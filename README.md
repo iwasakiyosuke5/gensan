@@ -1,9 +1,10 @@
-# team_33_kaizen
-![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/09bd9e94-2715-45c1-9471-9466e120cb45)
+## スケジュール
 
-![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/4fbaf478-0ee4-4481-a96c-5f75653779fd)
+## タスク
+- [ ] #todo
+- [ ] デプロイ
+- [ ] todo
 
-![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/18c53e78-24c2-4a57-b357-1b49b432efb6)
 
 # デジタル時代の改善革命
 ## Why Me
@@ -25,6 +26,13 @@
 - ハマった経験は資産．
 
 - あとで自分で見返しても有用．
+
+## team_33_kaizen
+![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/09bd9e94-2715-45c1-9471-9466e120cb45)
+
+![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/4fbaf478-0ee4-4481-a96c-5f75653779fd)
+
+![image](https://github.com/harukari007/team_33_kaizen/assets/167996409/18c53e78-24c2-4a57-b357-1b49b432efb6)
 
 
 従業員・承認者のCRUD実装
