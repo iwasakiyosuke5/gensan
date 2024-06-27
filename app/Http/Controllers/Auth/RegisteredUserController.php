@@ -40,6 +40,10 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'position' => 'default_value', //暫定
+            'team' => 'default_value', //暫定
+            'depertment' => 'default_value', //暫定
+        
         ]);
 
         event(new Registered($user));
