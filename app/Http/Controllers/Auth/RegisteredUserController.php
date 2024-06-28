@@ -34,15 +34,19 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'position' => ['required', 'string', 'max:255'],
+            'team' => ['required', 'string', 'max:255'],
+            'department' => ['required', 'string', 'max:255'],
+
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'position' => 'default_value', //暫定
-            'team' => 'default_value', //暫定
-            'department' => 'default_value', //暫定
+            'position' => $request->position, //0628設定
+            'team' => $request->team, //0628設定
+            'department' => $request->department, //0628設定
         
         ]);
 
