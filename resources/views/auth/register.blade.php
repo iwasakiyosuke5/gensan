@@ -25,10 +25,15 @@
         <!-- 役職 -->
         <div class="mt-4">
             <x-input-label for="position" :value="__('役職')" />
-            <x-text-input id="position" class="block mt-1 w-full" type="text" name="position" :value="old('position')" required autocomplete="position" />
+            <select id="position" name="position" class="block mt-1 w-full">
+                <option value="部長">部長</option>
+                <option value="課長">課長</option>
+                <option value="係長">係長</option>
+                <option value="一般社員">一般社員</option>
+            </select>
             <x-input-error :messages="$errors->get('position')" class="mt-2" />
         </div>
-
+        
         <!-- 部署 -->
         <div class="mt-4">
             <x-input-label for="department" :value="__('部署')" />
