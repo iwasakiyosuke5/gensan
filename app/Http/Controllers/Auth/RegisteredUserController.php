@@ -42,7 +42,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'position' => 'default_value', //暫定
             'team' => 'default_value', //暫定
-            'depertment' => 'default_value', //暫定
+            'department' => 'default_value', //暫定
         
         ]);
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('position'); //役職
-            $table->string('depertment'); //部署
+            $table->string('department'); //部署
             $table->string('team'); //チーム
             $table->string('email')->unique(); //初期流用
             $table->timestamp('email_verified_at')->nullable(); //初期流用 必要？

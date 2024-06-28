@@ -23,7 +23,7 @@ class User extends Authenticatable
         'password', //暫定
         'position', //暫定
         'team', //暫定
-        'depertment', //暫定
+        'department', //暫定
     ];
 
     /**
