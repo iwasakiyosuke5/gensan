@@ -3,6 +3,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; //Add
 use App\Http\Controllers\BookController; //Add
+use App\Http\Controllers\GeminiController;
+
+// Gemini:追加
+// Route::get('/create', [GeminiController::class, '実行する関数'])
+Route::get('/create', [GeminiController::class, 'index'])->name('index');
+Route::post('/', [GeminiController::class, 'entry'])->name('entry');
 
 //本：ダッシュボード表示(books.blade.php)
 Route::get('/', [BookController::class,'index'])->middleware(['auth'])->name('book_index');
