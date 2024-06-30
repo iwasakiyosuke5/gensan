@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; //Add
 use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
-use App\Http\Controllers\SampleController;//Add
-
-/*Sample表示用＝＞最終的に削除*/
-Route::get('sample/sample',[SampleController::class,'create'])->name('sample');
 
 // Gemini:追加
 // Route::get('/create', [GeminiController::class, '実行する関数'])
@@ -45,4 +41,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
