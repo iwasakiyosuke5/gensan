@@ -35,7 +35,7 @@
     
             </div>
             <div class="bg-indigo-200 w-1/2 h-scleen">
-                <form  method="POST" action="" class="mx-2">
+                <form  method="POST" action="{{ route('kaizenProposals.store') }}" class="mx-2">
                     <h1 class="text-2xl">最終提案書の作成</h1>
                     @csrf
                     <h2 class="font-bold">提案書名</h2>
@@ -58,7 +58,7 @@
                     <input class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="budget" value="{{ $result['budget']}}" required></input>
                     <x-input-error :messages="$errors->get('budget')" class="mt-2" />
 
-                    <input type="hidden" name="id" value="{{Auth::user()->id}}"> 
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> 
                     {{-- IDの登録 --}}
                     <input type="hidden" name="position" value="{{Auth::user()->position}}"> 
                     {{-- 役職の登録 --}}
