@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request; //Add
 use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
+use App\Http\Controllers\KaizenProposalController;
 
+// 
+Route::post('post', [KaizenProposalController::class, 'store'])->name('post.store');
+Route::post('/kaizen-proposals', [KaizenProposalController::class, 'store'])->name('kaizenProposals.store');
 
 // Gemini:追加
 Route::get('/create', [GeminiController::class, 'index'])->name('index');
