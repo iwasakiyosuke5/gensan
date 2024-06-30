@@ -5,8 +5,8 @@ use Illuminate\Http\Request; //Add
 use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
 
+
 // Gemini:追加
-// Route::get('/create', [GeminiController::class, '実行する関数'])
 Route::get('/create', [GeminiController::class, 'index'])->name('index');
 Route::post('/', [GeminiController::class, 'entry'])->name('entry');
 
