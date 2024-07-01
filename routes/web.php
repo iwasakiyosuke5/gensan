@@ -9,11 +9,18 @@ use App\Http\Controllers\MypageController;
 
 //mypageの表示
 Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
+//mypageから詳細へ
+Route::get('/mypageDetail/{idKP}', [KaizenProposalController::class, 'mypageDetail'])->name('mypageDetail');
+//mypage詳細からの更新用
+// Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])->name('mypageDetail.submit');
+// routes/web.php
+Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])->name('mypageDetail.submit');
 
 
-// 
+// 過去一覧用
 Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.list');
 Route::get('/proposalDetail/{idKP}', [KaizenProposalController::class, 'detail'])->name('proposal.detail');
+
 // 
 Route::post('post', [KaizenProposalController::class, 'store'])->name('post.store');
 Route::post('/kaizen-proposals', [KaizenProposalController::class, 'store'])->name('kaizenProposals.store');

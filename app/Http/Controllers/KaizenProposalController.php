@@ -28,6 +28,16 @@ class KaizenProposalController extends Controller
         return view('proposalDetail', compact('post'));
     }
 
+    public function mypageDetail($idKP)
+    {
+        $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
+        // $post->currentSituation = Str::markdown($post->currentSituation);
+        // $post->proposal = Str::markdown($post->proposal);
+        // $post->benefit = Str::markdown($post->benefit);
+        // $post->budget = Str::markdown($post->budget);
+        return view('mypageDetail', compact('post'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -88,10 +98,45 @@ class KaizenProposalController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // 書き方１種類目
     public function update(Request $request, kaizenProposal $kaizenProposal)
     {
-        //
+        $request->validate([
+            'currentSituation' => 'required|string',
+            'proposal' => 'required|string',
+            'benefit' => 'required|string',
+            'budget' => 'required|string',
+        ]);
+
+        $kaizenProposal = kaizenProposal::find($request->idKP);
+        $kaizenProposal->currentSituation   = $request->currentSituation;
+        $kaizenProposal->proposal = $request->proposal;
+        $kaizenProposal->benefit = $request->benefit;
+        $kaizenProposal->budget   = $request->budget;
+        $kaizenProposal->save();
+        return redirect('/mypage');
+        // return redirect()->back()->with('success', '提案書が更新されました！');
+        
     }
+    // 書き方２種類目
+    // public function update(Request $request, $idKP)
+    // {
+    //     $request->validate([
+    //         'currentSituation' => 'required|string',
+    //         'proposal' => 'required|string',
+    //         'benefit' => 'required|string',
+    //         'budget' => 'required|string',
+    //     ]);
+
+    //     $kaizenProposal = kaizenProposal::find($idKP);
+    //     $kaizenProposal->currentSituation = $request->currentSituation;
+    //     $kaizenProposal->proposal = $request->proposal;
+    //     $kaizenProposal->benefit = $request->benefit;
+    //     $kaizenProposal->budget = $request->budget;
+    //     $kaizenProposal->save();
+
+    //     return redirect()->back()->with('success', '提案書が更新されました！');
+    // }
 
     /**
      * Remove the specified resource from storage.
