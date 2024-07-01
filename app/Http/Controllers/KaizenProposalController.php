@@ -14,7 +14,7 @@ class KaizenProposalController extends Controller
      */
     public function index()
     {
-        $posts = kaizenProposal::all();
+        $posts = kaizenProposal::orderBy('idKP','desc')->get();
         return view('list', compact('posts'));
     }
 
