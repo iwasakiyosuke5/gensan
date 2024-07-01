@@ -18,7 +18,7 @@
                     <x-nav-link><!--:href="route('')" :active="request()->routeIs('')"-->
                         投稿一覧
                     </x-nav-link>
-                    <x-nav-link ><!--:href="route('')" :active="request()->routeIs('')"-->
+                    <x-nav-link :href="route('mypage')" :active="request()->routeIs('mypage')">
                         マイページ
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
