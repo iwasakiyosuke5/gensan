@@ -3,14 +3,18 @@
         {{-- <h1>{{config('app.name')}}</h1> --}}
         <div class="text-red-400 text-end">{{Auth::user()->department}}部署、{{Auth::user()->name}}さんの提案です（usersテーブルから流用の確認用,データの受け渡しが確認できたら消す）</div>
         
+        <x-content-frame>
         <h1 class="text-gray-200 m-2">課題・導入したい事例を記入して、最後に『作成してください』添えると⭕️。</h1>
         <form action="{{route('entry')}}" method="post">
             @csrf
             <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" >@isset($result['task']){{$result['task']}}@endisset </textarea>
-            <button class="text-gray-100 border p-1 rounded-md" type="submit">AIに作成依頼/再依頼</button>
+            <x-primary-button>AIに作成依頼</x-prmary-button>
         </form>
-
+        </x-content-frame>
+        
         <hr>
+
+        
 
         @isset($result)
         <div class="flex w-full h-scleen">
