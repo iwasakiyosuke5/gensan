@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kaizenProposal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class KaizenProposalController extends Controller
 {
@@ -20,6 +21,10 @@ class KaizenProposalController extends Controller
     public function detail($idKP)
     {
         $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
+        $post->currentSituation = Str::markdown($post->currentSituation);
+        $post->proposal = Str::markdown($post->proposal);
+        $post->benefit = Str::markdown($post->benefit);
+        $post->budget = Str::markdown($post->budget);
         return view('proposalDetail', compact('post'));
     }
 

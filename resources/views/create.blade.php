@@ -75,7 +75,7 @@
                     {{-- <input type="hidden" name="team" value="{{Auth::user()->team}}">  --}}
                     {{-- teamの登録 --}}
                     <input type="hidden" name="appovalStage" value="0"> 
-                    {{-- 承認段階の登録 0:検討中、1:承認、2:否認、3:差戻し --}}
+                    {{-- 承認段階の登録 0:検討中、1:承認、2:否認、3:差し戻し --}}
                     <div class="flex justify-end"><input class="px-2 bg-pink-300 hover:bg-pink-500 rounded cursor-pointer"  type="submit" value="Update!"></div>
                 </form>
             </div>
