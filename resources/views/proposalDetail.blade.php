@@ -86,7 +86,7 @@
                                 <h2 class="font-bold text-red-500">イイね👍</h2>
                             </div>
                             <div class="flex justify-end">
-                                <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
+                                <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
                             </div>
                             <div class="flex justify-end">
                             <x-primary-button>イイね👍する！</x-prmiary-button>
