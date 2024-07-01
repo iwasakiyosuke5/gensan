@@ -5,6 +5,10 @@ use Illuminate\Http\Request; //Add
 use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\KaizenProposalController;
+use App\Http\Controllers\MypageController;
+
+//mypageの表示
+Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
 
 
 // 
