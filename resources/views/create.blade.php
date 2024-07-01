@@ -4,7 +4,7 @@
         <div class="text-red-400 text-end">{{Auth::user()->department}}部署、{{Auth::user()->name}}さんの提案です（usersテーブルから流用の確認用,データの受け渡しが確認できたら消す）</div>
         
         <x-content-frame>
-        <h1 class="text-gray-200 m-2">課題・導入したい事例を記入して、最後に『作成してください』添えると⭕️。</h1>
+        <h1 class="text-gray-600 m-2">課題・導入したい事例を記入して、最後に『作成してください』添えると⭕️。</h1>
         <form action="{{route('entry')}}" method="post">
             @csrf
             <textarea class="w-1/2 mx-2 rounded-md" name="toGeminiText" >@isset($result['task']){{$result['task']}}@endisset </textarea>
@@ -18,7 +18,7 @@
 
         @isset($result)
         <div class="flex w-full h-scleen">
-            <div class="bg-blue-200 w-1/2">
+            <div class="bg-blue-200 w-1/2 rounded-l-xl">
                 <h1 class="text-2xl mx-2">AIの提案内容</h1>
                 <div class="mx-2">
                     <h2 class="font-bold">提案書名</h2>
@@ -38,7 +38,7 @@
                 </div>
     
             </div>
-            <div class="bg-indigo-200 w-1/2 h-scleen">
+            <div class="bg-indigo-200 w-1/2 rounded-r-xl h-scleen">
                 <form  method="POST" action="{{ route('kaizenProposals.store') }}" class="mx-2">
                     <h1 class="text-2xl">最終提案書の作成</h1>
                     @csrf
