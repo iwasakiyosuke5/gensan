@@ -6,6 +6,10 @@ use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\KaizenProposalController;
 
+
+// 
+Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.list');
+Route::get('/proposalDetail/{idKP}', [KaizenProposalController::class, 'detail'])->name('proposal.detail');
 // 
 Route::post('post', [KaizenProposalController::class, 'store'])->name('post.store');
 Route::post('/kaizen-proposals', [KaizenProposalController::class, 'store'])->name('kaizenProposals.store');

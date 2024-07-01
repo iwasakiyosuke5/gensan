@@ -13,7 +13,14 @@ class KaizenProposalController extends Controller
      */
     public function index()
     {
-        //
+        $posts = kaizenProposal::all();
+        return view('list', compact('posts'));
+    }
+
+    public function detail($idKP)
+    {
+        $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
+        return view('proposalDetail', compact('post'));
     }
 
     /**
