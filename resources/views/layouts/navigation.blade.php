@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         提案書作成
                     </x-nav-link>
-                    <x-nav-link><!--:href="route('')" :active="request()->routeIs('')"-->
+                    <x-nav-link :href="route('proposal.list')" :active="request()->routeIs('proposal.list')" >
                         投稿一覧
                     </x-nav-link>
                     <x-nav-link ><!--:href="route('')" :active="request()->routeIs('')"-->
