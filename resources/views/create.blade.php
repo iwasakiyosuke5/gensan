@@ -62,16 +62,20 @@
                     <input class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="budget" value="{{ $result['budget']}}" required></input>
                     <x-input-error :messages="$errors->get('budget')" class="mt-2" />
 
-                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}"> 
+
+                    {{-- 以下はデータ登録時にKaizenProposalController.phpで対応しているため必要なし --}}
+                    {{-- <input type="hidden" name="user_id" value="{{Auth::user()->id}}">  --}}
                     {{-- IDの登録 --}}
-                    <input type="hidden" name="position" value="{{Auth::user()->position}}"> 
+                    {{-- <input type="hidden" name="name" value="{{Auth::user()->name}}">  --}}
+                    {{-- IDの登録 --}}
+                    {{-- <input type="hidden" name="position" value="{{Auth::user()->position}}">  --}}
                     {{-- 役職の登録 --}}
-                    <input type="hidden" name="department" value="{{Auth::user()->department}}"> 
+                    {{-- <input type="hidden" name="department" value="{{Auth::user()->department}}">  --}}
                     {{-- 部署の登録 --}}
-                    <input type="hidden" name="team" value="{{Auth::user()->team}}"> 
+                    {{-- <input type="hidden" name="team" value="{{Auth::user()->team}}">  --}}
                     {{-- teamの登録 --}}
                     <input type="hidden" name="appovalStage" value="0"> 
-                    {{-- 承認段階の登録 0:検討中、1:承認、2:否認、3:差し戻し --}}
+                    {{-- 承認段階の登録 0:検討中、1:承認、2:否認、3:差戻し --}}
                     <div class="flex justify-end"><input class="px-2 bg-pink-300 hover:bg-pink-500 rounded cursor-pointer"  type="submit" value="Update!"></div>
                 </form>
             </div>
