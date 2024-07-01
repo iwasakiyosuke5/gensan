@@ -19,6 +19,8 @@ return new class extends Migration
             $table->text('benefit'); // 登録した期待される効果
             $table->text('budget')->nullable(); // 予算（文章も含む）
             $table->unsignedBigInteger('user_id'); // ログインしているユーザーのIDを保存するカラム
+            //$table->string('name'); // 名前
+            $table->string('name'); // 名前
             $table->string('position'); // 役職
             $table->string('department'); // 部署
             $table->string('team'); // チーム

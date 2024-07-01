@@ -20,6 +20,7 @@ class kaizenProposal extends Model
         'benefit',
         'budget',
         'user_id',
+        'name',
         'position',
         'department',
         'team',

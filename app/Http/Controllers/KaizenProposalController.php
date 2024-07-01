@@ -53,6 +53,7 @@ class KaizenProposalController extends Controller
             'benefit' => $request->input('benefit'),
             'budget' => $request->input('budget'),
             'user_id' => Auth::user()->id,
+            'name' => Auth::user()->name,
             'position' => Auth::user()->position,
             'department' => Auth::user()->department,
             'team' => Auth::user()->team,
