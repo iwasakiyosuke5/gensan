@@ -8,7 +8,11 @@
     </x-slot>
 
     <div>
-        <div class="text-xl">提案書詳細</div>
+        <div class="flex justify-between">
+            <div class="text-xl">提案書詳細</div>
+            <x-secondary-button>戻る</x-secondary-button>
+            {{-- x-secondary-button 機能を持たしていないよ！ 一覧に戻りたい --}}
+        </div>
         {{-- 提案書全体 --}}
         <div class="flex w-full h-scleen">
             
@@ -85,7 +89,7 @@
                                 <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
                             </div>
                             <div class="flex justify-end">
-                            <x-primary-button>イイね👍する！</x-prmary-button>
+                            <x-primary-button>イイね👍する！</x-prmiary-button>
                             {{-- x-primary-button 機能を持たしていないよ！ --}}
                             </>
                         </div>
