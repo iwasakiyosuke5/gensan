@@ -10,8 +10,14 @@ use App\Http\Controllers\LikeController;
 
 //mypageの表示
 Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
+//mypageから詳細へ
+Route::get('/mypageDetail/{idKP}', [KaizenProposalController::class, 'mypageDetail'])->name('mypageDetail');
+//mypage詳細からの更新用
+// Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])->name('mypageDetail.submit');
+// routes/web.php
+Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])->name('mypageDetail.submit');
 
-// 
+// 過去一覧用
 Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.list');
 Route::get('/proposalDetail/{idKP}', [KaizenProposalController::class, 'detail'])->name('proposal.detail');
 

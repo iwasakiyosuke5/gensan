@@ -1,12 +1,23 @@
-<!-- resources/views/proposalDetail.blade.php -->
+<!-- resources/views/mypageDetail.blade.php -->
 
 <x-app-layout>
-    <x-content-frame>
+<script>
+    function submitForm() {
+        // フォームを取得して送信する
+        document.getElementById('edit').submit();
+    }
+</script>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Kaizen Proposal Detail') }}
+        </h2>
+    </x-slot>
+
     <div>
         <div class="flex justify-between">
-            <div class="text-xl">提案書詳細</div>
+            <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">検討中/差戻し時のみ編集可能</span>   </div>
             <x-secondary-button>戻る</x-secondary-button>
-            {{-- x-secondary-button 機能を持たしていないよ！ 一覧に戻りたい --}}
+            {{-- x-secondary-button 機能を持たしていないよ！ mypage一覧に戻りたい --}}
         </div>
         {{-- 提案書全体 --}}
         <div class="flex w-full h-scleen">
@@ -19,18 +30,24 @@
 
                     <h2 class="font-bold">提案書名</h2>
                     <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->title !!}</div>
+                    <form id="edit" action="{{ route('mypageDetail.submit', ['idKP' => $post->idKP]) }}" method="post">
+                        @csrf
+                        {{-- 以下approvalStageによって条件切り替え --}}
+                        @php
+                            $readonly = ($post->approvalStage == 1 || $post->approvalStage == 2) ? 'readonly' : '';
+                        @endphp
+                        <h2 class="font-bold">現状とその問題点</h2>
+                        <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="currentSituation" rows="7" cols="" required {{ $readonly }}>{{ $post->currentSituation }}</textarea>
 
-                    <h2 class="font-bold">現状とその問題点</h2>
-                    <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->currentSituation !!}</div>
- 
-                    <h2 class="font-bold">提案内容</h2>
-                    <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->proposal !!}</div>
+                        <h2 class="font-bold">提案内容</h2>
+                        <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="proposal" rows="7" cols="" required {{ $readonly }}> {{ $post->proposal }}</textarea>
 
-                    <h2 class="font-bold">メリット</h2>
-                    <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->benefit !!}</div>
+                        <h2 class="font-bold">メリット</h2>
+                        <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="benefit" rows="7" cols="" required {{ $readonly }}> {{ $post->benefit }}</textarea>
 
-                    <h2 class="font-bold">予算</h2>
-                    <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->budget !!}</div>
+                        <h2 class="font-bold">予算</h2>
+                        <input class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="budget" value="{{ $post->budget}}" required {{ $readonly }}></input>
+                    </form>
                 </div>
             </div>
 
@@ -81,12 +98,14 @@
                                 <h2 class="font-bold text-red-500">イイね👍</h2>
                             </div>
                             <div class="flex justify-end">
-                                <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
+                                <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
                             </div>
                             <div class="flex justify-end">
-                            <x-primary-button>イイね👍する！</x-prmiary-button>
+                                <!-- フォーム外部に配置した送信ボタン -->
+                            <button class="" onclick="submitForm()" {{ $readonly ? 'disabled' : '' }}>Update!</button>
+                            {{-- <x-primary-button>更新</x-prmiary-button> --}}
                             {{-- x-primary-button 機能を持たしていないよ！ --}}
-                            </>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -97,46 +116,5 @@
 
         </div>
 
-
-
-        {{-- <div>
-            <h2>Current Situation:</h2>
-            <p>{{ $post->currentSituation }}</p>
-            
-            <h2>Proposal:</h2>
-            <p>{{ $post->proposal }}</p>
-            
-            <h2>Benefit:</h2>
-            <p>{{ $post->benefit }}</p>
-            
-            <h2>Budget:</h2>
-            <p>{{ $post->budget }}</p>
-            
-            <h2>Department:</h2>
-            <p>{{ $post->department }}</p>
-
-            <h2>team:</h2>
-            <p>{{ $post->team }}</p>
-            
-            <!-- 他の必要なフィールドも追加できます -->
-        </div> --}}
     </div>
-     @if(is_null($like))
-        <form method="POST" action="{{ route('like.store') }}">
-             @csrf
-            <input type="hidden" name="kp_id" value="{{$post->idKP}}">
-            <button type='submit' class='like'>
-                Like
-            </button>
-        </form>    
-    @else
-        <form method="POST" action="{{ route('like.destroy',$like->id)}}">
-            @csrf
-            @method('delete')
-            <button type='submit' class='pushed'>
-                Dislike
-            </button>
-        </form>  
-    @endif
-</x-content-frame>
 </x-app-layout>

@@ -12,11 +12,7 @@ class GeminiController extends Controller
 {
     public function index()
     {
-        // // 現在の認証済みユーザーを取得
-        // $user = Auth::user();
 
-        // // ビューにユーザーデータを渡す
-        // return view('create', ['user' => $user]);
         return view('create');
     }
 

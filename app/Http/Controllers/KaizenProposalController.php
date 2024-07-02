@@ -6,6 +6,7 @@ use App\Models\kaizenProposal;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class KaizenProposalController extends Controller
 {
@@ -14,7 +15,7 @@ class KaizenProposalController extends Controller
      */
     public function index()
     {
-        $posts = kaizenProposal::all();
+        $posts = kaizenProposal::orderBy('idKP','desc')->get();
         return view('list', compact('posts'));
     }
 
@@ -22,7 +23,21 @@ class KaizenProposalController extends Controller
     {   
         $like=Like::where('kp_id',$idKP)->where('user_id',auth()->id())->first();
         $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
+        $post->currentSituation = Str::markdown($post->currentSituation);
+        $post->proposal = Str::markdown($post->proposal);
+        $post->benefit = Str::markdown($post->benefit);
+        $post->budget = Str::markdown($post->budget);
         return view('proposalDetail', compact('post','like'));
+    }
+
+    public function mypageDetail($idKP)
+    {
+        $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
+        // $post->currentSituation = Str::markdown($post->currentSituation);
+        // $post->proposal = Str::markdown($post->proposal);
+        // $post->benefit = Str::markdown($post->benefit);
+        // $post->budget = Str::markdown($post->budget);
+        return view('mypageDetail', compact('post'));
     }
 
     /**
@@ -85,10 +100,45 @@ class KaizenProposalController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // 書き方１種類目
     public function update(Request $request, kaizenProposal $kaizenProposal)
     {
-        //
+        $request->validate([
+            'currentSituation' => 'required|string',
+            'proposal' => 'required|string',
+            'benefit' => 'required|string',
+            'budget' => 'required|string',
+        ]);
+
+        $kaizenProposal = kaizenProposal::find($request->idKP);
+        $kaizenProposal->currentSituation   = $request->currentSituation;
+        $kaizenProposal->proposal = $request->proposal;
+        $kaizenProposal->benefit = $request->benefit;
+        $kaizenProposal->budget   = $request->budget;
+        $kaizenProposal->save();
+        return redirect('/mypage');
+        // return redirect()->back()->with('success', '提案書が更新されました！');
+        
     }
+    // 書き方２種類目
+    // public function update(Request $request, $idKP)
+    // {
+    //     $request->validate([
+    //         'currentSituation' => 'required|string',
+    //         'proposal' => 'required|string',
+    //         'benefit' => 'required|string',
+    //         'budget' => 'required|string',
+    //     ]);
+
+    //     $kaizenProposal = kaizenProposal::find($idKP);
+    //     $kaizenProposal->currentSituation = $request->currentSituation;
+    //     $kaizenProposal->proposal = $request->proposal;
+    //     $kaizenProposal->benefit = $request->benefit;
+    //     $kaizenProposal->budget = $request->budget;
+    //     $kaizenProposal->save();
+
+    //     return redirect()->back()->with('success', '提案書が更新されました！');
+    // }
 
     /**
      * Remove the specified resource from storage.

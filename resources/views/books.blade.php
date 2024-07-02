@@ -1,92 +1,97 @@
 <!-- resources/views/books.blade.php -->
 <x-app-layout>
 
-    <!--ヘッダー[START]-->
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <form action="{{ route('book_index') }}" method="GET" class="w-full max-w-lg">
-                <x-button class="bg-gray-100 text-gray-900">{{ __('Dashboard') }}</x-button>
-            </form>
-        </h2>
-    </x-slot>
-    <!--ヘッダー[END]-->
-            
-        <!-- バリデーションエラーの表示に使用-->
-       <x-errors id="errors" class="bg-blue-500 rounded-lg">{{$errors}}</x-errors>
-        <!-- バリデーションエラーの表示に使用-->
-    
-    <!--全エリア[START]-->
-    <div class="flex bg-gray-100">
+  <!--ヘッダー[START]-->
+  <x-slot name="header">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <form action="{{ route('book_index') }}" method="GET" class="w-full max-w-lg">
+        <x-button class="bg-gray-100 text-gray-900">{{ __('Dashboard') }}</x-button>
+      </form>
+    </h2>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  </x-slot>
+  <!--ヘッダー[END]-->
 
-        <!--左エリア[START]--> 
-        <div class="text-gray-700 text-left px-4 py-4 m-2">
-            
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-500 font-bold">
-                    本を管理する
-                </div>
+  <!--全エリア[START]-->
+  <div class="flex flex-col bg-gray-100 min-h-screen">
+
+    <!-- 全体の見出しと説明文 [START] -->
+    <div class="bg-white py-6 sm:py-8 lg:py-12">
+      <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <div class="mb-10 md:mb-16">
+          <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">KaizenEx Dashboard</h2>
+          <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">従業員のアイデアを手軽に提案・共有できるアプリ。インセンティブ制度でやる気を引き出し、ESを高めます。会社は現場の意見を反映して、組織運営を改善し、離職率低下を図ります。</p>
+        </div>
+      </div>
+    </div>
+    <!-- 全体の見出しと説明文 [END] -->
+
+    <!-- バリデーションエラーの表示に使用-->
+    <x-errors id="errors" class="bg-blue-500 rounded-lg mx-auto my-4">{{$errors}}</x-errors>
+    <!-- バリデーションエラーの表示に使用-->
+
+    <!-- コンテンツエリア [START] -->
+    <div class="flex flex-1">
+
+      <!--左エリア[START]-->
+      <div class="text-gray-700 text-left w-1/2 bg-gray-100 px-4 py-4">
+
+        <!-- 2x2グリッド配置 -->
+        <div class="grid grid-cols-2 gap-4">
+
+          <!-- 最新一覧Top10 -->
+          <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
+            <h3 class="mb-2 text-lg font-semibold md:text-xl">最新一覧Top10</h3>
+            <p class="mb-4 text-gray-500">最近提案された改善提案書の上位10件を表示しています</p>
+            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+          </div>
+
+          <!-- 個人別提案数一覧 -->
+          <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
+            <h3 class="mb-2 text-lg font-semibold md:text-xl">個人別提案数一覧</h3>
+            <p class="mb-4 text-gray-500">あなたのアイデアが会社を変えます！！</p>
+            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+          </div>
+
+          <!-- 部署別提案数一覧 -->
+          <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
+            <h3 class="mb-2 text-lg font-semibold md:text-xl">部署別提案数一覧</h3>
+            <p class="mb-4 text-gray-500">チームそれぞれ個性豊なアイデア、読むのが楽しい！</p>
+            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+          </div>
+
+          <!-- イイネ👍 -->
+          <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
+            <h3 class="mb-2 text-lg font-semibold md:text-xl">イイネ👍</h3>
+            <p class="mb-4 text-gray-500">共感した！そのアイデアイイネと思ったらGoodボタンで清き1票を！</p>
+            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+          </div>
+
+        </div>
+      </div>
+      <!--左エリア[END]-->
+
+      <!--右側エリア[START]-->
+      <div class="bg-blue-900 text-white py-6 sm:py-8 lg:py-12 w-1/2">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+          <div class="grid gap-4">
+
+            <!-- 自分の投稿一覧 -->
+            <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+              <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
+              <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
+              <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
             </div>
 
+          </div>
+        </div>
+      </div>
+      <!--右側エリア[END]-->
 
-            <!-- 本のタイトル -->
-            <form action="{{ url('books') }}" method="POST" class="w-full max-w-lg">
-                @csrf
-                  <div class="flex flex-col px-2 py-2">
-                   <!-- カラム１ -->
-                    <div class="w-full md:w-1/1 px-3 mb-2 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                       Book Name
-                      </label>
-                      <input name="item_name" class="appearance-none block w-full text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="">
-                    </div>
-                    <!-- カラム２ -->
-                    <div class="w-full md:w-1/1 px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        金額
-                      </label>
-                      <input name="item_amount" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
-                    </div>
-                    <!-- カラム３ -->
-                    <div class="w-full md:w-1/1 px-3 mb-2 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        数
-                      </label>
-                      <input name="item_number" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="">
-                    </div>
-                    <!-- カラム４ -->
-                    <div class="w-full md:w-1/1 px-3 mb-6 md:mb-0">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        発売日
-                      </label>
-                      <input name="published" type="date" class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                    </div>
-                  </div>
-                  <!-- カラム５ -->
-                  <div class="flex flex-col">
-                      <div class="text-gray-700 text-center px-4 py-2 m-2">
-                             <x-button class="bg-blue-500 rounded-lg">送信</x-button>
-                      </div>
-                   </div>
-            </form>
-        </div>
-        <!--左エリア[END]--> 
-    
-    
-        <!--右側エリア[START]-->
-        <div class="flex-1 text-gray-700 text-left bg-blue-100 px-4 py-2 m-2">
-            <!-- 現在の本 -->
-        @if (count($books) > 0)
-            @foreach ($books as $book)
-                <x-collection id="{{ $book->id }}">{{ $book->item_name }}</x-collection>
-            @endforeach
-        @endif
-        </div>
-        <div>
-            {{ $books->links()}}
-        </div>
-        <!--右側エリア[[END]-->   
+    </div>
+    <!-- コンテンツエリア [END] -->
 
-</div>
- <!--全エリア[END]-->
+  </div>
+  <!--全エリア[END]-->
 
 </x-app-layout>

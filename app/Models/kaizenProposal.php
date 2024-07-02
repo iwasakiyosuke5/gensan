@@ -12,6 +12,10 @@ class kaizenProposal extends Model
     }
 
     use HasFactory;
+    protected $primaryKey = 'idKP';
+    public $incrementing = true;
+    protected $keyType = 'int'; 
+    // 上記３つは編集時に必要になった。
 
     // protected $table = 'kaizen_proposals';
     // 上記はテーブル名がkaizenProposalsだった時の名残。どうもMySQLはkaizenProposalsでもOKだが、
