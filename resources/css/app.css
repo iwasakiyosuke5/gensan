@@ -30,7 +30,7 @@
   @apply bg-gray-100 min-h-screen;
   }
   .content-area{
-  @apply max-w-[120rem] px-8 pt-14 mx-auto;
+  @apply max-w-[120rem] px-8 pt-36 mx-auto;
   }
   .content-frame{
   @apply flex flex-col bg-white text-left rounded-2xl p-4 md:p-8 mb-5;
