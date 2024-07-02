@@ -41,37 +41,47 @@
                     </div>
                 </div>
 
-            {{-- 右側 提案者、提案日、部署名、チーム、上司コメント、ステージ、イイね --}}
-            <div class="bg-blue-200 w-1/2 rounded-r-xl h-scleen">
-                <div class="mx-2">
-                    <div class="flex">
-                        <div class="w-1/2">
-                            <h2 class="font-bold mx-auto">提案者</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->name !!}</div>                        </div>
-                        <div class="w-1/2">
-                            <h2 class="font-bold mx-auto">提案日</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->updated_at->format('Y-m-d H:i') !!}</div>
+                {{-- 右側 提案者、提案日、部署名、チーム、上司コメント、ステージ、イイね --}}
+                <div class="bg-blue-200 w-1/2 rounded-r-xl h-scleen">
+                    <div class="mx-2">
+                        <div class="flex">
+                            <div class="w-1/2">
+                                <h2 class="font-bold">提案者</h2>
+                                <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->name !!}</div>
+                            </div>
+                            <div class="w-1/2">
+                                <h2 class="font-bold">提案日</h2>
+                                <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->updated_at->format('Y-m-d H:i') !!}</div>
+                            </div>
                         </div>
 
-                    <div class="flex">
-                        <div class="w-1/3">
-                            <h2 class="font-bold">役職</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->position !!}</div>
+                        <div class="flex">
+                            <div class="w-1/3">
+                                <h2 class="font-bold">役職</h2>
+                                <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->position !!}</div>
+                            </div>
+                            <div class="w-1/3">
+                                <h2 class="font-bold">部署名</h2>
+                                <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->department !!}</div>
+                            </div>
+                            <div class="w-1/3">
+                                <h2 class="font-bold">チーム</h2>
+                                <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->team !!}</div>
+                            </div>
+        
+        
+        
                         </div>
-                        <div class="w-1/3">
-                            <h2 class="font-bold">部署名</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->department !!}</div>
+                        <div class="h-80">
+                            <h2 class="font-bold">上司コメント</h2>
+                            <div class="px-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->bossComment !!}</div>
                         </div>
-                        <div class="w-1/3">
-                            <h2 class="font-bold">チーム</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->team !!}</div>
-                        </div>
-  
+
+                        
                         <div class="flex justify-around">
                             <div class="w-1/3">
                                 <h2 class="font-bold text-red-500">承認状態</h2>
                                 <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
-
                             </div>
                             <div class="w-1/3">
                                 <h2 class="font-bold text-red-500">いいね数</h2>
@@ -84,6 +94,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
 
             </div>
         </div>

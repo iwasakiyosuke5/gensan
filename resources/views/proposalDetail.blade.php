@@ -37,28 +37,31 @@
                 <div class="mx-2">
                     <div class="flex">
                         <div class="w-1/2">
-                            <h2 class="font-bold mx-auto">提案者</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->name !!}</div>
+                            <h2 class="font-bold">提案者</h2>
+                            <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->name !!}</div>
                         </div>
                         <div class="w-1/2">
-                            <h2 class="font-bold mx-auto">提案日</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->updated_at->format('Y-m-d H:i') !!}</div>
+                            <h2 class="font-bold">提案日</h2>
+                            <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->updated_at->format('Y-m-d H:i') !!}</div>
                         </div>
                     </div>
 
                     <div class="flex">
                         <div class="w-1/3">
                             <h2 class="font-bold">役職</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->position !!}</div>
+                            <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->position !!}</div>
                         </div>
                         <div class="w-1/3">
                             <h2 class="font-bold">部署名</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->department !!}</div>
+                            <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full"> {!! $post->department !!}</div>
                         </div>
                         <div class="w-1/3">
                             <h2 class="font-bold">チーム</h2>
-                            <div class="text-center mx-auto w-4/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->team !!}</div>
+                            <div class="text-center w-5/6 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->team !!}</div>
                         </div>
+    
+    
+    
                     </div>
                     <div class="h-80">
                         <h2 class="font-bold">上司コメント</h2>
