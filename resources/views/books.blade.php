@@ -75,15 +75,29 @@
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div class="grid gap-4">
 
-            <!-- 自分の投稿一覧 -->
-            <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
-              <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
-              <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
-              <div class="text-center">
-                <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
-              </div>
-            </div>
+            @php
+                $position = Auth::user()->position;
+            @endphp
 
+            @if ($position === '一般社員' || $position === '係長')
+                <!-- usersテーブルのpositionが係長と一般社員の時の表示-->
+                <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+                    <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
+                    <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
+                    <div class="text-center">
+                        <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
+                    </div>
+                </div>
+            @elseif ($position === '課長' || $position === '部長')
+                <!-- usersテーブルのpositionが課長と部長の時の表示-->
+                <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+                    <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
+                    <p class="mb-4 text-gray-500">承認が必要な提案書一覧が確認できます</p>
+                    <div class="text-center">
+                        {{-- <x-secondary-button :href="route('approvalList')" :active="request()->routeIs('approvalList')">More</x-secondary-button> --}}
+                    </div>
+                </div>
+            @endif
           </div>
         </div>
       </div>
