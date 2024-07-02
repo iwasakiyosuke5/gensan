@@ -6,28 +6,32 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
+use App\Models\kaizenProposal;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function create()
     {
-        $books = Book::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(3);
-        return view('books', [
-            'books' => $books
-        ]);
+ 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    // miniMypageとapprovalPage用
+    public function index()
     {
-        //
+        // miniMypage用
+        $posts = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
+        // approvalPage用
+        $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
+        return view('books',compact('posts','approvals'));
     }
-
     /**
      * Store a newly created resource in storage.
      */

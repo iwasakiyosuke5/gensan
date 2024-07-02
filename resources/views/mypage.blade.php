@@ -5,18 +5,18 @@
         <div style="overflow-x: auto;">
             <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
                 <thead>
-                    <tr>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">提案番号</th>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">提案日</th>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">タイトル</th>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">承認状況</th>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">イイネ👍</th>
-                        <th style="background-color: #f2f2f2; font-weight: bold;">詳細の確認</th>
+                    <tr class="text-center">
+                        <th style=" font-weight: bold;">提案番号</th>
+                        <th style=" font-weight: bold;">提案日時</th>
+                        <th style=" font-weight: bold;">タイトル</th>
+                        <th style=" font-weight: bold;">承認状況</th>
+                        <th style=" font-weight: bold;">イイネ👍</th>
+                        <th style=" font-weight: bold;">詳細確認</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($posts as $post)
-                    <tr>
+                    <tr class="text-center">
                         <td class="border px-4 py-2">{{ $post->idKP }}</td>
                         <td class="border px-4 py-2">{{ $post->updated_at->format('Y-m-d H:i')}}</td>
                         <td class="border px-4 py-2">{{ $post->title }}</td>
@@ -29,7 +29,9 @@
                     @endforeach
                 </tbody>
             </table>
-            
+            <div class="flex justify-center">
+                {{ $posts->links()}}
+            </div>
         </div>
     </div>
 </x-content-frame>

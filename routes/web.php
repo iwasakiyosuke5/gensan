@@ -13,6 +13,12 @@ Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
 //mypageから詳細へ
 Route::get('/mypageDetail/{idKP}', [KaizenProposalController::class, 'mypageDetail'])->name('mypageDetail');
 
+//miniMypageの表示
+// Route::get('/books', [BookController::class, 'create'])->name('miniMypage');
+Route::get('/books', [BookController::class, 'create'])->name('miniMypage');
+
+
+
 //ダッシュボードから承認作業詳細へ
 Route::get('/approvalDetail/{idKP}', [KaizenProposalController::class, 'approvalDetail'])->name('approvalDetail');
 //承認作業詳細からの更新用
