@@ -113,6 +113,8 @@ class KaizenProposalController extends Controller
         $kaizenProposal->proposal = $request->proposal;
         $kaizenProposal->benefit = $request->benefit;
         $kaizenProposal->budget   = $request->budget;
+        $kaizenProposal->approvalStage  = "再提出";
+        
         $kaizenProposal->save();
         return redirect('/mypage');
         // return redirect()->back()->with('success', '提案書が更新されました！');
