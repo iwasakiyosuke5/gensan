@@ -12,6 +12,11 @@ use App\Http\Controllers\LikeController;
 Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
 //mypageから詳細へ
 Route::get('/mypageDetail/{idKP}', [KaizenProposalController::class, 'mypageDetail'])->name('mypageDetail');
+
+//管理画面から詳細へ
+Route::get('/approvalDetail/{idKP}', [KaizenProposalController::class, 'approvalDetail'])->name('approvalDetail');
+
+
 //mypage詳細からの更新用
 // Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])->name('mypageDetail.submit');
 // routes/web.php
