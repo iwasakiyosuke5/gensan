@@ -43,28 +43,27 @@
           <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
             <h3 class="mb-2 text-lg font-semibold md:text-xl">最新一覧Top10</h3>
             <p class="mb-4 text-gray-500">最近提案された改善提案書の上位10件を表示しています</p>
-            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
-          </div>
+            <div class="text-center">
+              <x-secondary-button :href="route('proposal.list')" :active="request()->routeIs('proposal.list')">More</x-secondary-button>
+            </div>
+          </div> 
 
           <!-- 個人別提案数一覧 -->
           <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
             <h3 class="mb-2 text-lg font-semibold md:text-xl">個人別提案数一覧</h3>
             <p class="mb-4 text-gray-500">あなたのアイデアが会社を変えます！！</p>
-            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
           </div>
 
           <!-- 部署別提案数一覧 -->
           <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
             <h3 class="mb-2 text-lg font-semibold md:text-xl">部署別提案数一覧</h3>
             <p class="mb-4 text-gray-500">チームそれぞれ個性豊なアイデア、読むのが楽しい！</p>
-            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
           </div>
 
           <!-- イイネ👍 -->
           <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
             <h3 class="mb-2 text-lg font-semibold md:text-xl">イイネ👍</h3>
             <p class="mb-4 text-gray-500">共感した！そのアイデアイイネと思ったらGoodボタンで清き1票を！</p>
-            <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
           </div>
 
         </div>
@@ -80,7 +79,9 @@
             <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
               <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
               <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
-              <a href="#" class="mt-auto font-bold text-indigo-500 transition duration-100 hover:text-indigo-600 active:text-indigo-700">More</a>
+              <div class="text-center">
+                <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
+              </div>
             </div>
 
           </div>

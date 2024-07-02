@@ -114,15 +114,15 @@
         </div> --}}
     </div>
     <div class="flex justify-center item-center py-8 gap-12">
-    <x-secondary-button :href="route('index')" :active="request()->routeIs('index')">
+    <x-cancel-button :href="route('index')" :active="request()->routeIs('index')">
         戻る
-    </x-secondary-button>
+    </x-cancel-button>
     <div>
      @if(is_null($like))
         <form method="POST" action="{{ route('like.store') }}">
              @csrf
             <input type="hidden" name="kp_id" value="{{$post->idKP}}">
-            <button type='submit' class='like'>
+            <button type='submit' class='btn-secondary'>
                 Like
             </button>
         </form>    
