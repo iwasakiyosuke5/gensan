@@ -72,7 +72,7 @@ class KaizenProposalController extends Controller
             'position' => Auth::user()->position,
             'department' => Auth::user()->department,
             'team' => Auth::user()->team,
-            'approvalStage' => 0, // 初期値
+            'approvalStage' => $request->input('appovalStage'),
             'bossComment' => '', // 空のコメント
             'goodCounts' => 0, // 初期値
         ]);
