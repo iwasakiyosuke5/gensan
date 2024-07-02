@@ -107,6 +107,23 @@ class KaizenProposalController extends Controller
         //
     }
 
+    public function judgeUpdate(Request $request, kaizenProposal $kaizenProposal)
+    {
+        $request->validate([
+            'bossComment' => 'required|string',
+            'approvalStage' => 'required|string',
+        ]);
+
+        $kaizenProposal = kaizenProposal::find($request->idKP);
+        $kaizenProposal->bossComment   = $request->bossComment;
+        $kaizenProposal->approvalStage  = $request->approvalStage;
+        
+        $kaizenProposal->save();
+        return redirect('/');
+        // return redirect()->back()->with('success', '提案書が更新されました！');
+        
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -132,6 +149,8 @@ class KaizenProposalController extends Controller
         // return redirect()->back()->with('success', '提案書が更新されました！');
         
     }
+
+
     // 書き方２種類目
     // public function update(Request $request, $idKP)
     // {

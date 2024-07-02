@@ -4,7 +4,7 @@
     <x-content-frame>
     <div>
         <div class="flex justify-between">
-            <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">採用の可否をお願いしますbsfb</span></div>
+            <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">採用の可否をお願いします</span></div>
             <x-secondary-button>戻る</x-secondary-button>
             {{-- x-secondary-button 機能を持たしていないよ！ 一覧に戻りたい --}}
         </div>
@@ -72,13 +72,13 @@
                             </div>
                         </div>
                     </div>
-                    <form id="edit" action="" method="post">
+                    <form id="edit" action="{{ route('approvalDetail.submit', ['idKP' => $post->idKP]) }}" method="post">
                         {{-- {{ route('mypageDetail.submit', ['idKP' => $post->idKP]) }} --}}
                         @csrf
                       <div class="bg-pink-100 rounded-lg mx-1 my-1">  
                         <div class="">
                             <h2 class="font-bold">上司コメント</h2>
-                            <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="currentSituation" rows="7" cols="" required >{{ $post->bossComment }}</textarea>
+                            <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="bossComment" rows="7" cols="" required >{{ $post->bossComment }}</textarea>
                         </div>
                         <div class="flex">
                             <div class="w-1/4 mx-auto">
@@ -89,12 +89,16 @@
                                 <div class="font-bold text-blue-600">判断をお願いします</div>
                                 <div class="flex justify-evenly rounded-lg bg-slate-300 border border-black my-1 py-1 ">  
                                     <div><input class="" type="radio" id="approvalStage1" name="approvalStage" value="差戻し"><label class="text-black font-bold" for="">差戻し</label></div>
-                                    <div><input type="radio" id="approvalStage2" name="approvalStage" value="採用"><label class="text-blue-600 font-bold" for="">採用</label></div>
+                                    <div><input class="" type="radio" id="approvalStage2" name="approvalStage" value="採用" checked><label class="text-blue-600 font-bold" for="">採用</label></div>
                                     <div><input class="" type="radio" id="approvalStage3" name="approvalStage" value="不採用"><label  class="text-red-600 font-bold"  for="">不採用</label></div>
                                 </div>
                             </div>
                         </div> 
+                        <div class="flex justify-end mr-4">
+                            <input class="px-2 bg-pink-300 hover:bg-pink-500 rounded cursor-pointer"  type="submit" value="Update!">
+                        </div>
                       </div>
+                      
                     </form>
 
                 </div>
