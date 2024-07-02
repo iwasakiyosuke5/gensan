@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class kaizenProposal extends Model
-{
+{   
+    public function like(){
+        return $this->hasmany(Like::class);
+    }
+
     use HasFactory;
     protected $primaryKey = 'idKP';
     public $incrementing = true;

@@ -29,7 +29,9 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
+    {   
+        Schema::dropIfExists('likes');
+        Schema::dropIfExists('kaizen_proposals');
         Schema::dropIfExists('users');
     }
 };

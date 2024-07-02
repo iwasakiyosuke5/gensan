@@ -1,4 +1,5 @@
 <x-app-layout>
+<x-content-frame>
     <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
         <h1 style="text-align: center; margin-bottom: 20px;">自分の投稿一覧</h1>
         <div style="overflow-x: auto;">
@@ -26,4 +27,5 @@
             </table>
         </div>
     </div>
+</x-content-frame>
 </x-app-layout>

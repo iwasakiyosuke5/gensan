@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kaizenProposal;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -19,13 +20,14 @@ class KaizenProposalController extends Controller
     }
 
     public function detail($idKP)
-    {
+    {   
+        $like=Like::where('kp_id',$idKP)->where('user_id',auth()->id())->first();
         $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
         $post->currentSituation = Str::markdown($post->currentSituation);
         $post->proposal = Str::markdown($post->proposal);
         $post->benefit = Str::markdown($post->benefit);
         $post->budget = Str::markdown($post->budget);
-        return view('proposalDetail', compact('post'));
+        return view('proposalDetail', compact('post','like'));
     }
 
     public function mypageDetail($idKP)
