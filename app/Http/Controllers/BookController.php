@@ -6,6 +6,7 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
+use App\Models\kaizenProposal;
 
 class BookController extends Controller
 {
@@ -14,10 +15,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(3);
-        return view('books', [
-            'books' => $books
-        ]);
+        $posts = kaizenProposal::orderBy('idKP', 'desc')->take(5)->get();
+        return view('books', compact('posts'));
     }
 
     /**

@@ -46,7 +46,7 @@
             <div class="text-center">
               <x-secondary-button :href="route('proposal.list')" :active="request()->routeIs('proposal.list')">More</x-secondary-button>
             </div>
-          </div> 
+          </div>
 
           <!-- 個人別提案数一覧 -->
           <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
@@ -71,6 +71,8 @@
       <!--左エリア[END]-->
 
       <!--右側エリア[START]-->
+      <!-- <div>{{$posts}}</div>
+      <div>{{count($posts)}}</div> -->
       <div class="bg-blue-900 text-white py-6 sm:py-8 lg:py-12 w-1/2">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
           <div class="grid gap-4">
