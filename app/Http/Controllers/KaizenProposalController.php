@@ -40,16 +40,6 @@ class KaizenProposalController extends Controller
         return view('mypageDetail', compact('post'));
     }
 
-    public function approvalDetail($idKP)
-    {
-        $post = kaizenProposal::where('idKP', $idKP)->firstOrFail();
-        // $post->currentSituation = Str::markdown($post->currentSituation);
-        // $post->proposal = Str::markdown($post->proposal);
-        // $post->benefit = Str::markdown($post->benefit);
-        // $post->budget = Str::markdown($post->budget);
-        return view('approvalDetail', compact('post'));
-    }
-
     /**
      * Show the form for creating a new resource.
      */
