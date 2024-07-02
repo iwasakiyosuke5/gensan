@@ -34,7 +34,7 @@
                         @csrf
                         {{-- 以下approvalStageによって条件切り替え --}}
                         @php
-                            $readonly = ($post->approvalStage == 1 || $post->approvalStage == 2) ? 'readonly' : '';
+                            $readonly = ($post->approvalStage == "検討中" || $post->approvalStage == "採用" || $post->approvalStage == "不採用"  || $post->approvalStage == "再提出") ? 'readonly' : '';
                         @endphp
                         <h2 class="font-bold">現状とその問題点</h2>
                         <textarea class="bg-slate-300 mb-2 px-1 rounded-md w-full" type="text" name="currentSituation" rows="7" cols="" required {{ $readonly }}>{{ $post->currentSituation }}</textarea>
