@@ -5,8 +5,6 @@
     <div>
         <div class="flex justify-between">
             <div class="text-xl">提案書詳細</div>
-            <x-secondary-button>戻る</x-secondary-button>
-            {{-- x-secondary-button 機能を持たしていないよ！ 一覧に戻りたい --}}
         </div>
         {{-- 提案書全体 --}}
         <div class="flex w-full h-scleen">
@@ -74,19 +72,13 @@
                     <div class="flex justify-around">
                         <div class="w-1/3">
                             <h2 class="font-bold text-red-500">承認状態</h2>
-                            <div class="text-center w-3/5 px-1 py-1 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
+                            <div class="text-center w-3/5 px-1 py-5 bg-blue-300 rounded-md text-black mb-2 w-full">{!! $post->approvalStage !!}</div>
                         </div>
                         <div class="w-1/3">
-                            <div class="flex justify-center border-m-black">
-                                <h2 class="font-bold text-red-500">イイね👍</h2>
-                            </div>
+                                <h2 class="font-bold text-red-500">いいね数</h2>
                             <div class="flex justify-end">
                                 <div class="text-center w-3/5 px-1 py-5 bg-pink-300 rounded-md text-black mb-2 w-full">{!! $post->goodCounts !!}</div>
                             </div>
-                            <div class="flex justify-end">
-                            <x-primary-button>イイね👍する！</x-prmiary-button>
-                            {{-- x-primary-button 機能を持たしていないよ！ --}}
-                            </>
                         </div>
                     </div>
                 </div>
@@ -121,6 +113,11 @@
             <!-- 他の必要なフィールドも追加できます -->
         </div> --}}
     </div>
+    <div class="flex justify-center item-center py-8 gap-12">
+    <x-secondary-button :href="route('index')" :active="request()->routeIs('index')">
+        戻る
+    </x-secondary-button>
+    <div>
      @if(is_null($like))
         <form method="POST" action="{{ route('like.store') }}">
              @csrf
@@ -138,5 +135,6 @@
             </button>
         </form>  
     @endif
+    </div>
 </x-content-frame>
 </x-app-layout>
