@@ -6,14 +6,15 @@ use App\Http\Controllers\BookController; //Add
 use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\KaizenProposalController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\LikeController;
 
 //mypageの表示
 Route::get('/mypage', [MypageController::class, 'create'])->name('mypage');
 
-
 // 
 Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.list');
 Route::get('/proposalDetail/{idKP}', [KaizenProposalController::class, 'detail'])->name('proposal.detail');
+
 // 
 Route::post('post', [KaizenProposalController::class, 'store'])->name('post.store');
 Route::post('/kaizen-proposals', [KaizenProposalController::class, 'store'])->name('kaizenProposals.store');
@@ -51,5 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// いいねボタン
+Route::post('post', [LikeController::class, 'store'])->name('like.store');
+Route::delete('delete/{like}', [LikeController::class, 'destroy'])->name('like.destroy');
 
 require __DIR__.'/auth.php';

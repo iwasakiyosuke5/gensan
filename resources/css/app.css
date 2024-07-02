@@ -8,13 +8,22 @@
   }
   .btn-secondary{
   @apply py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border
-  border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none
+  border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none;
   }
   .link{
   @apply py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg text-blue-600
-  hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none
+  hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none;
   }
-  
+  .like{
+  @apply py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border
+  border-gray-600 text-gray-600 hover:border-gray-400 hover:text-gray-400 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .pushed{
+  @apply bg-orange-400 py-3 px-4 w-40 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border
+  border-gray-600 text-gray-600 hover:border-gray-400 hover:text-gray-400 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+}
   
   @layer screen{
   .base-bg{
@@ -25,6 +34,5 @@
   }
   .content-frame{
   @apply flex flex-col bg-white text-left rounded-2xl p-4 md:p-8 mb-5;
-  }
   }
   }

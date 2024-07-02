@@ -10,6 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+
+    public function like(){
+        return $this->hasmany(Like::class);
+    }
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
