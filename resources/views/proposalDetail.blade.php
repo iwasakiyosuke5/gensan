@@ -3,6 +3,8 @@
 <x-app-layout>
     <x-content-frame>
     <div>
+        {{$post->user_id}}
+        {{$like}}
         <div class="flex justify-between">
             <div class="text-xl">提案書詳細</div>
         </div>
@@ -118,22 +120,24 @@
         戻る
     </x-cancel-button>
     <div>
-     @if(is_null($like))
-        <form method="POST" action="{{ route('like.store') }}">
-             @csrf
-            <input type="hidden" name="kp_id" value="{{$post->idKP}}">
-            <button type='submit' class='btn-secondary'>
-                Like
-            </button>
-        </form>    
-    @else
-        <form method="POST" action="{{ route('like.destroy',$like)}}">
-            @csrf
-            @method('delete')
-            <button type='submit' class='pushed'>
-                Dislike
-            </button>
-        </form>  
+    @if($post->user_id !== auth()->id())
+        @if(is_null($like))
+            <form method="POST" action="{{ route('like.store') }}">
+                @csrf
+                <input type="hidden" name="kp_id" value="{{$post->idKP}}">
+                <button type='submit' class='btn-secondary'>
+                    Like
+                </button>
+            </form>    
+        @else
+            <form method="POST" action="{{ route('like.destroy',$like)}}">
+                @csrf
+                @method('delete')
+                <button type='submit' class='pushed'>
+                    Dislike
+                </button>
+            </form>  
+        @endif
     @endif
     </div>
 </x-content-frame>
