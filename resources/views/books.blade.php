@@ -16,10 +16,10 @@
   <div class="flex flex-col bg-gray-100 min-h-screen">
 
     <!-- 全体の見出しと説明文 [START] -->
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
-      <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <div class="mb-10 md:mb-16">
-          <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">KaizenEx Dashboard</h2>
+    <div class="bg-white py-4 sm:py-4 lg:py-6">
+      <div class="mx-auto max-w-screen-2xl px-4 md:px-6">
+        <div class="mb-3 md:mb-3">
+          <h2 class="mb-1 text-center text-2xl font-bold text-gray-800 md:mb-4 lg:text-3xl">KaizenEx Dashboard</h2>
           <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">従業員のアイデアを手軽に提案・共有できるアプリ。インセンティブ制度でやる気を引き出し、ESを高めます。会社は現場の意見を反映して、組織運営を改善し、離職率低下を図ります。</p>
         </div>
       </div>
