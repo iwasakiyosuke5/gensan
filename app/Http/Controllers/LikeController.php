@@ -12,13 +12,14 @@ class LikeController extends Controller
             'kp_id'=>$request->kp_id,
             'user_id'=>auth()->id(),
         ]);
-        kaizenProposal::increment('goodCounts');
+        kaizenProposal::where('idKP',$request->kp_id)->increment('goodCounts');
         return back();
     }
 
     public function destroy(Like $like){
         $like->delete();
-        kaizenProposal::decrement('goodCounts');
+        kaizenProposal::where('idKP',$like->kp_id)->decrement('goodCounts');
+        $like=NULL;
         return back();
     }
 }

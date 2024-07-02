@@ -114,7 +114,7 @@
         </div> --}}
     </div>
     <div class="flex justify-center item-center py-8 gap-12">
-    <x-cancel-button :href="route('index')" :active="request()->routeIs('index')">
+    <x-cancel-button :href="route('proposal.list')" :active="request()->routeIs('proposal.list')">
         戻る
     </x-cancel-button>
     <div>
@@ -127,7 +127,7 @@
             </button>
         </form>    
     @else
-        <form method="POST" action="{{ route('like.destroy',$like->id)}}">
+        <form method="POST" action="{{ route('like.destroy',$like)}}">
             @csrf
             @method('delete')
             <button type='submit' class='pushed'>
