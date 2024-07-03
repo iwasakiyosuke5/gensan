@@ -25,6 +25,7 @@ Route::post('/mypageDetail/{idKP}', [KaizenProposalController::class, 'update'])
 
 // 過去一覧用
 Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.list');
+// Route::get('/list', [KaizenProposalController::class, 'index'])->name('proposal.index');
 Route::get('/proposalDetail/{idKP}', [KaizenProposalController::class, 'detail'])->name('proposal.detail');
 
 // 
