@@ -18,92 +18,92 @@
       <div class="grid gap-4">
 
         @php
-            $position = Auth::user()->position;
+        $position = Auth::user()->position;
         @endphp
 
         @if ($position === '一般社員' || $position === '係長')
-            <!-- usersテーブルのpositionが係長と一般社員の時の表示-->
-            <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
-                <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
-                <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
-            @if($mines->count())
-            <table > <!-- ここでテーブルを追加 -->
-              <thead>
-                  <tr class="text-center">
-                      <th style=" font-weight: bold;">No</th>
-                      <th style=" font-weight: bold;">提案日</th>
-                      <th style=" font-weight: bold;">タイトル</th>
-                      <th style=" font-weight: bold;">承認状況</th>
-                      <th style=" font-weight: bold;">❤️</th>
-                      <th style=" font-weight: bold;">詳細</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  @foreach($mines as $mine)
-                  <tr class="text-center">
-                      <td class="border px-4 py-2">{{ $mine->idKP }}</td>
-                      <td class="border px-4 py-2">{{ $mine->updated_at->format('Y-m-d') }}</td>
-                      <td class="border px-4 py-2">{{ $mine->title }}</td>
-                      <td class="border px-4 py-2">{{ $mine->approvalStage }}</td>
-                      <td class="border px-4 py-2">{{ $mine->goodCounts }}</td>
-                      <td class="border px-4 py-2">
-                          <a href="{{ route('mypageDetail', ['idKP' => $mine->idKP]) }}" class="text-blue-500 hover:underline">🔍</a>
-                      </td>
-                  </tr>
-                  @endforeach
-              </tbody>
-              </table> <!-- テーブルの終了タグ -->
-                <div class="text-center mt-4">
-                    <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
-                </div>
-              @else
-              <p>No proposals found.</p>
-              @endif
+        <!-- usersテーブルのpositionが係長と一般社員の時の表示-->
+        <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
+          <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
+          @if($mines->count())
+          <table> <!-- ここでテーブルを追加 -->
+            <thead>
+              <tr class="text-center">
+                <th style=" font-weight: bold;">No</th>
+                <th style=" font-weight: bold;">提案日</th>
+                <th style=" font-weight: bold;">タイトル</th>
+                <th style=" font-weight: bold;">承認状況</th>
+                <th style=" font-weight: bold;">❤️</th>
+                <th style=" font-weight: bold;">詳細</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($mines as $mine)
+              <tr class="text-center">
+                <td class="border px-4 py-2">{{ $mine->idKP }}</td>
+                <td class="border px-4 py-2">{{ $mine->updated_at->format('Y-m-d') }}</td>
+                <td class="border px-4 py-2">{{ $mine->title }}</td>
+                <td class="border px-4 py-2">{{ $mine->approvalStage }}</td>
+                <td class="border px-4 py-2">{{ $mine->goodCounts }}</td>
+                <td class="border px-4 py-2">
+                  <a href="{{ route('mypageDetail', ['idKP' => $mine->idKP]) }}" class="text-blue-500 hover:underline">🔍</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table> <!-- テーブルの終了タグ -->
+          <div class="text-center mt-4">
+            <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
+          </div>
+          @else
+          <p>No proposals found.</p>
+          @endif
 
-            </div>
+        </div>
         @elseif ($position === '課長' || $position === '部長')
-            <!-- usersテーブルのpositionが課長と部長の時の表示-->
-            <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
-                <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
-                <p class="mb-4 text-gray-500">あなたの部下が承認を待っています</p>
+        <!-- usersテーブルのpositionが課長と部長の時の表示-->
+        <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
+          <p class="mb-4 text-gray-500">あなたの部下が承認を待っています</p>
 
-                @if($approvals->count())
-                <table> <!-- ここでテーブルを追加 -->
-                  <thead>
-                      <tr class="text-center">
-                          <th style=" font-weight: bold;">No</th>
-                          <th style=" font-weight: bold;">提案者</th>
-                          <th style=" font-weight: bold;">提案日</th>
-                          <th style=" font-weight: bold;">タイトル</th>
-                          <th style=" font-weight: bold;">承認状況</th>
-                          <th style=" font-weight: bold;">詳細</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      @foreach($approvals as $approval)
-                      <tr class="text-center">
-                          <td class="border px-4 py-2">{{ $approval->idKP }}</td>
-                          <td class="border px-4 py-2">{{ $approval->name }}</td>
-                          <td class="border px-4 py-2">{{ $approval->updated_at->format('Y-m-d') }}</td>
-                          <td class="border px-4 py-2">{{ $approval->title }}</td>
-                          <td class="text-red-800 border px-4 py-2">{{ $approval->approvalStage }}</td>
-                          <td class="border px-4 py-2">
-                              <a href="{{ route('approvalDetail', ['idKP' => $approval->idKP]) }}" class="hover:underline">🔍</a>
-                          </td>
-                      </tr>
-                      @endforeach
-                  </tbody>
-                  </table> <!-- テーブルの終了タグ -->
-                  <div class="mt-4 flex justify-center">
-                    {{ $approvals->links()}}
-                  </div>
-                  @else
-                  <p>No proposals found.</p>
-                  @endif
-                <div class="text-center mt-4">
-                    {{-- <x-secondary-button :href="route('approvalList')" :active="request()->routeIs('approvalList')">More</x-secondary-button> --}}
-                </div>
-            </div>
+          @if($approvals->count())
+          <table> <!-- ここでテーブルを追加 -->
+            <thead>
+              <tr class="text-center">
+                <th style=" font-weight: bold;">No</th>
+                <th style=" font-weight: bold;">提案者</th>
+                <th style=" font-weight: bold;">提案日</th>
+                <th style=" font-weight: bold;">タイトル</th>
+                <th style=" font-weight: bold;">承認状況</th>
+                <th style=" font-weight: bold;">詳細</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($approvals as $approval)
+              <tr class="text-center">
+                <td class="border px-4 py-2">{{ $approval->idKP }}</td>
+                <td class="border px-4 py-2">{{ $approval->name }}</td>
+                <td class="border px-4 py-2">{{ $approval->updated_at->format('Y-m-d') }}</td>
+                <td class="border px-4 py-2">{{ $approval->title }}</td>
+                <td class="text-red-800 border px-4 py-2">{{ $approval->approvalStage }}</td>
+                <td class="border px-4 py-2">
+                  <a href="{{ route('approvalDetail', ['idKP' => $approval->idKP]) }}" class="hover:underline">🔍</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table> <!-- テーブルの終了タグ -->
+          <div class="mt-4 flex justify-center">
+            {{ $approvals->links()}}
+          </div>
+          @else
+          <p>No proposals found.</p>
+          @endif
+          <div class="text-center mt-4">
+            {{-- <x-secondary-button :href="route('approvalList')" :active="request()->routeIs('approvalList')">More</x-secondary-button> --}}
+          </div>
+        </div>
 
         @endif
       </div>
@@ -124,7 +124,7 @@
           <p class="mb-4 text-gray-500">最近提案された改善提案書の上位5件を表示しています</p>
           <!-- テーブル表示エリア -->
           <div class="overflow-x-auto">
-            <table id="latestProposalsTable" class="text-center min-w-full border-collapse" >
+            <table id="latestProposalsTable" class="text-center min-w-full border-collapse">
               <thead>
                 <tr>
                   <th class="px-4 py-2">提案日</th>
@@ -157,43 +157,46 @@
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">部署別提案数一覧</h3>
           <p class="mb-4 text-gray-500">チームそれぞれ個性豊なアイデア、読むのが楽しい！</p>
+          <div class='w-full'>
+            <canvas id="department_chart" class="w-screen"></canvas>
+          </div>
         </div>
 
         <!-- イイネ👍 -->
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">直近３ヶ月のGood❤️Top5</h3>
           <p class="mb-4 text-gray-500">共感した！そのアイデアイイネと思ったら❤️ボタンで清き1票を！</p>
-                          @if($goodCounts->count())
-                <table> <!-- ここでテーブルを追加 -->
-                  <thead>
-                      <tr class="text-center">
-                          <th style=" font-weight: bold;">No</th>
-                          <th style=" font-weight: bold;">提案者</th>
-                          <th style=" font-weight: bold;">タイトル</th>
-                          <th style=" font-weight: bold;">承認状況</th>
-                          <th style=" font-weight: bold;">❤️</th>
-                          <th style=" font-weight: bold;">詳細</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      @foreach($goodCounts as $goodCount)
-                      <tr class="text-center">
-                          <td class="border px-4 py-2">{{ $goodCount->idKP }}</td>
-                          <td class="border px-4 py-2">{{ $goodCount->name }}</td>
-                          <td class="border px-4 py-2">{{ $goodCount->title }}</td>
-                          <td class="border px-4 py-2">{{ $goodCount->approvalStage }}</td>
-                          <td class="text-red-800 border px-4 py-2">{{ $goodCount->goodCounts }}</td>
-                          <td class="border px-4 py-2">
-                              <a href="{{ route('proposal.detail', ['idKP' => $goodCount->idKP]) }}" class="hover:underline">🔍</a>
-                          </td>
-                      </tr>
-                      @endforeach
-                  </tbody>
-                  </table> <!-- テーブルの終了タグ -->
+          @if($goodCounts->count())
+          <table> <!-- ここでテーブルを追加 -->
+            <thead>
+              <tr class="text-center">
+                <th style=" font-weight: bold;">No</th>
+                <th style=" font-weight: bold;">提案者</th>
+                <th style=" font-weight: bold;">タイトル</th>
+                <th style=" font-weight: bold;">承認状況</th>
+                <th style=" font-weight: bold;">❤️</th>
+                <th style=" font-weight: bold;">詳細</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($goodCounts as $goodCount)
+              <tr class="text-center">
+                <td class="border px-4 py-2">{{ $goodCount->idKP }}</td>
+                <td class="border px-4 py-2">{{ $goodCount->name }}</td>
+                <td class="border px-4 py-2">{{ $goodCount->title }}</td>
+                <td class="border px-4 py-2">{{ $goodCount->approvalStage }}</td>
+                <td class="text-red-800 border px-4 py-2">{{ $goodCount->goodCounts }}</td>
+                <td class="border px-4 py-2">
+                  <a href="{{ route('proposal.detail', ['idKP' => $goodCount->idKP]) }}" class="hover:underline">🔍</a>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table> <!-- テーブルの終了タグ -->
 
-                  @else
-                  <p>No proposals found.</p>
-                  @endif
+          @else
+          <p>No proposals found.</p>
+          @endif
 
 
 
@@ -209,8 +212,9 @@
   <!-- データをJavaScriptに渡す -->
   <script>
     const chartData = @json($chartData);
-    const mvp = @json($mvp); 
+    const mvp = @json($mvp);
+    const dpt = @json($dpt);
   </script>
   <!-- main.js の読み込み -->
-   @vite(['resources/js/main.js'])
+  @vite(['resources/js/main.js'])
 </x-app-layout>
