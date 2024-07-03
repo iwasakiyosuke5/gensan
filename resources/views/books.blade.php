@@ -83,6 +83,7 @@
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">イイネ👍</h3>
           <p class="mb-4 text-gray-500">共感した！そのアイデアイイネと思ったらGoodボタンで清き1票を！</p>
+
         </div>
       </div>
       <!--右エリア[END]-->

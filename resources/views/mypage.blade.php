@@ -23,7 +23,7 @@
                         <td class="border px-4 py-2">{{ $post->approvalStage }}</td>
                         <td class="border px-4 py-2">{{ $post->goodCounts }}</td>
                         <td class="border px-4 py-2">
-                            <a href="{{ route('proposal.detail', ['idKP' => $post->idKP]) }}" class="text-blue-500 hover:underline">詳細</a>
+                            <a href="{{ route('mypageDetail', ['idKP' => $post->idKP]) }}" class="text-blue-500 hover:underline">詳細</a>
                         </td>
                     </tr>
                     @endforeach
