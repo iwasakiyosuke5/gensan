@@ -80,7 +80,7 @@ class BookController extends Controller
         }elseif(count($array)==5){
             $mvp=$array;
         }else {
-            $mvp=array_slice($array,4,5);
+            $mvp=array_slice($array,0,5);
         }
         return view('books', compact('posts','mines','approvals','goodCounts','mvp'))->with('chartData', $chartData);
       //         return view('books',compact('mines','approvals'));
