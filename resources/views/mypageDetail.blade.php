@@ -4,7 +4,7 @@
     <x-content-frame>
         <div>
             <div class="flex justify-between">
-                <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">検討中/差戻し時のみ編集可能</span>   </div>     
+                <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">差戻し時のみ編集可能</span>   </div>     
             </div>
             {{-- 提案書全体 --}}
             <div class="flex w-full h-scleen">
