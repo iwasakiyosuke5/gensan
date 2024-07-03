@@ -8,14 +8,14 @@
         <table class="table-auto w-full">
             <thead>
                 <tr class="text-center">
-                    <th class="px-4 py-2">提案番号</th>
-                    <th class="px-4 py-2">名前</th>
+                    <th class="px-4 py-2">No</th>
+                    <th class="px-4 py-2">提案者</th>
                     <th class="px-4 py-2">部署</th>
                     <th class="px-4 py-2">チーム</th>
                     <th class="px-4 py-2">タイトル</th>
                     <th class="px-4 py-2">承認状況</th>
-                    <th class="px-4 py-2">イイネ👍</th>
-                    <th class="px-4 py-2">詳細確認</th>
+                    <th class="px-4 py-2">❤️</th>
+                    <th class="px-4 py-2">詳細</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,7 @@
                     <td class="border px-4 py-2">{{ $post->approvalStage }}</td>
                     <td class="border px-4 py-2">{{ $post->goodCounts }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('proposal.detail', ['idKP' => $post->idKP]) }}" class="text-blue-500 hover:underline">詳細</a>
+                        <a href="{{ route('proposal.detail', ['idKP' => $post->idKP]) }}" class="text-blue-500 hover:underline">🔍</a>
                     </td>
                 </tr>
                 @endforeach
