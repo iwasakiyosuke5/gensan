@@ -65,7 +65,7 @@
             <!-- usersテーブルのpositionが課長と部長の時の表示-->
             <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
                 <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
-                <p class="mb-4 text-gray-500">承認が必要な提案書一覧が確認できます</p>
+                <p class="mb-4 text-gray-500">あなたの部下が承認を待っています</p>
 
                 @if($approvals->count())
                 <table> <!-- ここでテーブルを追加 -->
