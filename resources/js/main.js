@@ -1,11 +1,7 @@
 /*----------
-mypageDetailの設定
+ダッシュボードの設定
 ----------*/
-// UpdateボタンのクリックでFormを送信させる
-const update = document.getElementById('update');
-update.addEventListener('click',()=>{
-  document.getElementById('edit').submit();
-}
+"use strict";{
 document.addEventListener('DOMContentLoaded', function () {
   var tableBody = document.getElementById('latestProposalsTable').querySelector('tbody');
 
@@ -34,3 +30,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+}
