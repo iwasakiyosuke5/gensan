@@ -1,16 +1,5 @@
 <!-- resources/views/books.blade.php -->
 <x-app-layout>
-  <!--ヘッダー[START]-->
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      <form action="{{ route('book_index') }}" method="GET" class="w-full max-w-lg">
-        <x-button class="bg-gray-100 text-gray-900">{{ __('Dashboard') }}</x-button>
-      </form>
-    </h2>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-  </x-slot>
-  <!--ヘッダー[END]-->
-
   <!--全エリア[START]-->
   <div class="flex flex-col bg-gray-100 min-h-screen">
     <!-- 全体の見出しと説明文 [START] -->
@@ -97,5 +86,5 @@
     var chartData = @json($chartData);
   </script>
   <!-- main.js の読み込み -->
-  <script src="{{ asset('js/main.js') }}"></script>
+   @vite(['resources/js/main.js'])
 </x-app-layout>
