@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
 use App\Models\kaizenProposal;
+// 下記は何ヶ月以内などの時に使用
+use Carbon\Carbon;
+
 
 class BookController extends Controller
 {
@@ -37,8 +40,15 @@ class BookController extends Controller
                 'date' => $post->created_at->format('Y-m-d'), // created_atフィールドが存在する場合
             ];
         });
+        //下記で今から３ヶ月前(sub)の日時を$threeMonthsAgoに与えている
+        // 一週間後(add)の時は、$nextWeek = Carbon::now()->addWeek(); 
+        $threeMonthsAgo = Carbon::now()->subMonths(3);
+        $goodCounts = kaizenProposal::where('updated_at', '>=', $threeMonthsAgo)
+                                    ->orderBy('goodCounts', 'desc')
+                                    ->take(5)->get();
+    
 
-        return view('books', compact('posts','mines','approvals'))->with('chartData', $chartData);
+        return view('books', compact('posts','mines','approvals','goodCounts'))->with('chartData', $chartData);
       //         return view('books',compact('mines','approvals'));
 
     }

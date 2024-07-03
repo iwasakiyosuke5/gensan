@@ -121,7 +121,7 @@
         <!-- 最新一覧Top10 -->
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">最新投稿Top5</h3>
-          <p class="mb-4 text-gray-500">最近提案された改善提案書の上位10件を表示しています</p>
+          <p class="mb-4 text-gray-500">最近提案された改善提案書の上位5件を表示しています</p>
           <!-- テーブル表示エリア -->
           <div class="overflow-x-auto">
             <table id="latestProposalsTable" class="min-w-full border-collapse border border-black">
@@ -158,8 +158,42 @@
 
         <!-- イイネ👍 -->
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
-          <h3 class="mb-2 text-lg font-semibold md:text-xl">イイネ👍</h3>
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">直近３ヶ月のGood👍Top5</h3>
           <p class="mb-4 text-gray-500">共感した！そのアイデアイイネと思ったらGoodボタンで清き1票を！</p>
+                          @if($goodCounts->count())
+                <table> <!-- ここでテーブルを追加 -->
+                  <thead>
+                      <tr class="text-center">
+                          <th style=" font-weight: bold;">提案番号</th>
+                          <th style=" font-weight: bold;">名前</th>
+                          <th style=" font-weight: bold;">タイトル</th>
+                          <th style=" font-weight: bold;">承認状況</th>
+                          <th style=" font-weight: bold;">イイネ👍</th>
+                          <th style=" font-weight: bold;">詳細確認</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($goodCounts as $goodCount)
+                      <tr class="text-center">
+                          <td class="border px-4 py-2">{{ $goodCount->idKP }}</td>
+                          <td class="border px-4 py-2">{{ $goodCount->name }}</td>
+                          <td class="border px-4 py-2">{{ $goodCount->title }}</td>
+                          <td class="text-red-800 border px-4 py-2">{{ $goodCount->approvalStage }}</td>
+                          <td class="text-red-800 border px-4 py-2">{{ $goodCount->goodCounts }}</td>
+                          <td class="border px-4 py-2">
+                              <a href="{{ route('proposal.detail', ['idKP' => $goodCount->idKP]) }}" class="hover:underline">詳細</a>
+                          </td>
+                      </tr>
+                      @endforeach
+                  </tbody>
+                  </table> <!-- テーブルの終了タグ -->
+
+                  @else
+                  <p>No proposals found.</p>
+                  @endif
+
+
+
 
         </div>
       </div>
