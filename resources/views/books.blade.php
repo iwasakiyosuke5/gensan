@@ -84,19 +84,85 @@
                 <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
                     <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
                     <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
-                    <div class="text-center">
+                @if($posts->count())
+                <table> <!-- ここでテーブルを追加 -->
+                  <thead>
+                      <tr class="text-center">
+                          <th style=" font-weight: bold;">提案番号</th>
+                          <th style=" font-weight: bold;">提案日</th>
+                          <th style=" font-weight: bold;">タイトル</th>
+                          <th style=" font-weight: bold;">承認状況</th>
+                          <th style=" font-weight: bold;">イイネ👍</th>
+                          <th style=" font-weight: bold;">詳細確認</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($posts as $post)
+                      <tr class="text-center">
+                          <td class="border px-4 py-2">{{ $post->idKP }}</td>
+                          <td class="border px-4 py-2">{{ $post->updated_at->format('Y-m-d') }}</td>
+                          <td class="border px-4 py-2">{{ $post->title }}</td>
+                          <td class="border px-4 py-2">{{ $post->approvalStage }}</td>
+                          <td class="border px-4 py-2">{{ $post->goodCounts }}</td>
+                          <td class="border px-4 py-2">
+                              <a href="{{ route('mypageDetail', ['idKP' => $post->idKP]) }}" class="text-blue-500 hover:underline">詳細</a>
+                          </td>
+                      </tr>
+                      @endforeach
+                  </tbody>
+                  </table> <!-- テーブルの終了タグ -->
+                    <div class="text-center mt-2">
                         <x-secondary-button :href="route('mypage')" :active="request()->routeIs('mypage')">More</x-secondary-button>
                     </div>
+                  @else
+                  <p>No proposals found.</p>
+                  @endif
+
                 </div>
             @elseif ($position === '課長' || $position === '部長')
                 <!-- usersテーブルのpositionが課長と部長の時の表示-->
                 <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
                     <h3 class="mb-2 text-lg font-semibold md:text-xl">承認案件の一覧</h3>
                     <p class="mb-4 text-gray-500">承認が必要な提案書一覧が確認できます</p>
+
+                    @if($approvals->count())
+                    <table> <!-- ここでテーブルを追加 -->
+                      <thead>
+                          <tr class="text-center">
+                              <th style=" font-weight: bold;">提案番号</th>
+                              <th style=" font-weight: bold;">名前</th>
+                              <th style=" font-weight: bold;">提案日</th>
+                              <th style=" font-weight: bold;">タイトル</th>
+                              <th style=" font-weight: bold;">承認状況</th>
+                              <th style=" font-weight: bold;">詳細確認</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach($approvals as $approval)
+                          <tr class="text-center">
+                              <td class="border px-4 py-2">{{ $approval->idKP }}</td>
+                              <td class="border px-4 py-2">{{ $approval->name }}</td>
+                              <td class="border px-4 py-2">{{ $approval->updated_at->format('Y-m-d') }}</td>
+                              <td class="border px-4 py-2">{{ $approval->title }}</td>
+                              <td class="text-green-700 border px-4 py-2">{{ $approval->approvalStage }}</td>
+                              <td class="border px-4 py-2">
+                                  <a href="{{ route('approvalDetail', ['idKP' => $approval->idKP]) }}" class="text-blue-500 hover:underline">詳細</a>
+                              </td>
+                          </tr>
+                          @endforeach
+                      </tbody>
+                      </table> <!-- テーブルの終了タグ -->
+                      <div class="mt-2 flex justify-center">
+                        {{ $approvals->links()}}
+                      </div>
+                      @else
+                      <p>No proposals found.</p>
+                      @endif
                     <div class="text-center">
                         {{-- <x-secondary-button :href="route('approvalList')" :active="request()->routeIs('approvalList')">More</x-secondary-button> --}}
                     </div>
                 </div>
+
             @endif
           </div>
         </div>
