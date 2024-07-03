@@ -5,8 +5,6 @@
     <div>
         <div class="flex justify-between">
             <div class="text-xl">提案書詳細 <span class="text-sm text-gray-600">採用の可否をお願いします</span></div>
-            <x-secondary-button>戻る</x-secondary-button>
-            {{-- x-secondary-button 機能を持たしていないよ！ 一覧に戻りたい --}}
         </div>
         {{-- 提案書全体 --}}
         <div class="flex w-full h-scleen">
@@ -94,16 +92,15 @@
                                 </div>
                             </div>
                         </div> 
-                        <div class="flex justify-end mr-4">
-                            <input class="px-2 bg-pink-300 hover:bg-pink-500 rounded cursor-pointer"  type="submit" value="Update!">
-                        </div>
                       </div>
-                      
                     </form>
-
                 </div>
             </div>
         </div>
+    </div>
+    <div class="flex justify-center item-center py-8 gap-12">
+        <x-cancel-button  :href="route('book_index')" :active="request()->routeIs('book_index')">戻る</x-cancel-button>
+        <button id="update" class="btn-primary" >Update!</button>
     </div>
 </x-content-frame>
 </x-app-layout>

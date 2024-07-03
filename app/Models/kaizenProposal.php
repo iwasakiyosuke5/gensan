@@ -16,7 +16,7 @@ class kaizenProposal extends Model
     public $incrementing = true;
     protected $keyType = 'int'; 
     // 上記３つは編集時に必要になった。
-
+    protected $table = 'kaizen_proposals'; // テーブル名を明示的に指定
     // protected $table = 'kaizen_proposals';
     // 上記はテーブル名がkaizenProposalsだった時の名残。どうもMySQLはkaizenProposalsでもOKだが、
     // Laravelは勝手にkaizenProposals→kaizen-proposalsとしてmigrationファイルを作成してしまうため
@@ -36,4 +36,5 @@ class kaizenProposal extends Model
         'bossComment',
         'goodCounts',
     ];
+
 }

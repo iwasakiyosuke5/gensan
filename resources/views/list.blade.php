@@ -13,7 +13,7 @@
         @if($posts->count())
         <table class="table-auto w-full">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th class="px-4 py-2">提案番号</th>
                     <th class="px-4 py-2">名前</th>
                     <th class="px-4 py-2">部署</th>
@@ -21,12 +21,12 @@
                     <th class="px-4 py-2">タイトル</th>
                     <th class="px-4 py-2">承認状況</th>
                     <th class="px-4 py-2">イイネ👍</th>
-                    <th class="px-4 py-2">詳細の確認</th>
+                    <th class="px-4 py-2">詳細確認</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($posts as $post)
-                <tr>
+                <tr class="text-center">
                     <td class="border px-4 py-2">{{ $post->idKP }}</td>
                     <td class="border px-4 py-2">{{ $post->name}}</td>
                     <td class="border px-4 py-2">{{ $post->department}}</td>
@@ -41,6 +41,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-2 flex justify-center">
+            {{ $posts->links()}}
+        </div>
         @else
         <p>No proposals found.</p>
         @endif

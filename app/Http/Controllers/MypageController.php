@@ -9,7 +9,7 @@ class MypageController extends Controller
 {
     public function create()
     {
-        $posts = kaizenProposal::where('user_id',auth()->id())->get();
+        $posts = kaizenProposal::where('user_id',auth()->id())->orderBy('idKP','desc')->paginate(5);
         return view('mypage',compact('posts'));
     }
 }
