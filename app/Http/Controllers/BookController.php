@@ -82,10 +82,23 @@ class BookController extends Controller
         }else {
             $mvp=array_slice($array,0,5);
         }
-        return view('books', compact('posts','mines','approvals','goodCounts','mvp'))->with('chartData', $chartData);
+
+        // 各部署の提案件数を集計
+        $departments = ['生産技術部', '研究開発部', '経理部', '営業部'];
+        $dpt = [];
+
+
+        foreach ($departments as $department) {
+            $count = KaizenProposal::where('department', $department)->count();
+            $dpt[] = [
+                'name' => $department,
+                'proposalCount' => $count
+            ];
+        }
+        return view('books', compact('posts','mines','approvals','goodCounts','mvp','dpt'))->with('chartData', $chartData);
       //         return view('books',compact('mines','approvals'));
     }
-
+       
     /**
      * Show the form for creating a new resource.
      */
