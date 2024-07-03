@@ -1,7 +1,8 @@
 /*----------
 ダッシュボードの設定
 ----------*/
-"use strict";{
+import Chart from 'chart.js/auto';
+
 document.addEventListener('DOMContentLoaded', function () {
   var tableBody = document.getElementById('latestProposalsTable').querySelector('tbody');
 
@@ -30,4 +31,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
-}
+
+// 個人投稿別グラフの作成
+console.log(mvp);
+console.log(mvp[0].postCount);
+let barCtx = document.getElementById('mvp_chart');
+  let barConfig = {
+   type: 'bar',
+    data: {
+      labels:  [mvp[0].name,mvp[1].name,mvp[2].name,mvp[3].name,mvp[4].name],
+      datasets: [{
+        data: [mvp[0].postCount,mvp[1].postCount,mvp[2].postCount,mvp[3].postCount,mvp[4].postCount],
+        label: "件数",
+        backgroundColor: [  // それぞれの棒の色を設定(dataの数だけ)
+         '#ff0000',
+          '#0000ff',
+          '#ffff00',
+          '#008000',
+          '#800080',
+          '#ffa500',
+        ],
+        borderWidth: 1,
+      }]
+    },
+  };
+  let barChart = new Chart(barCtx, barConfig);
+
+

@@ -144,6 +144,9 @@
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white">
           <h3 class="mb-2 text-lg font-semibold md:text-xl">個人別提案数一覧</h3>
           <p class="mb-4 text-gray-500">あなたのアイデアが会社を変えます！！</p>
+          <div class='w-full'>
+            <canvas id="mvp_chart" class="w-screen"></canvas>
+          </div>
         </div>
       </div>
       <!--左エリア[END]-->
@@ -205,7 +208,8 @@
 
   <!-- データをJavaScriptに渡す -->
   <script>
-    var chartData = @json($chartData);
+    const chartData = @json($chartData);
+    const mvp = @json($mvp); 
   </script>
   <!-- main.js の読み込み -->
    @vite(['resources/js/main.js'])
