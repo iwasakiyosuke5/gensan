@@ -6,19 +6,31 @@ use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
+use App\Models\kaizenProposal;
 
 class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    // 提案書を作成して上位５ファイルを取得する
     public function index()
     {
-        $books = Book::where('user_id',Auth::user()->id)->orderBy('created_at', 'asc')->paginate(3);
-        return view('books', [
-            'books' => $books
-        ]);
+        $posts = kaizenProposal::orderBy('idKP', 'desc')->take(5)->get();
+
+        // Chart.js 用のデータを整形
+        $chartData = $posts->map(function ($post) {
+            return [
+                'id' => $post->idKP,
+                'name' => $post->name,
+                'title' => $post->title, // titleフィールドが存在する場合
+                'date' => $post->created_at->format('Y-m-d'), // created_atフィールドが存在する場合
+            ];
+        });
+
+        return view('books', compact('posts'))->with('chartData', $chartData);
     }
+
 
     /**
      * Show the form for creating a new resource.
