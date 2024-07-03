@@ -37,7 +37,12 @@
         <!-- 部署 -->
         <div class="mt-4">
             <x-input-label for="department" :value="__('部署')" />
-            <x-text-input id="department" class="block mt-1 w-full" type="text" name="department" :value="old('department')" required autocomplete="department" />
+             <select id="department" name="department" class="block mt-1 w-full">
+                <option value="営業部">営業部</option>
+                <option value="経理部">経理部</option>
+                <option value="研究開発部">研究開発部</option>
+                <option value="生産技術部">生産技術部</option>
+            </select>
             <x-input-error :messages="$errors->get('department')" class="mt-2" />
         </div>
 
