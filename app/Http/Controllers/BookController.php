@@ -30,7 +30,14 @@ class BookController extends Controller
         // miniMypage用
         $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
         // approvalPage用
-        $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
+        $currentUserDepartment = Auth::user()->department;
+        $approvals = kaizenProposal::where('department', $currentUserDepartment)
+                                    ->where(function ($query) {
+                                        $query->where('approvalStage', '検討中')
+                                              ->orWhere('approvalStage', '再提出');
+                                    })
+                                    ->orderBy('idKP', 'desc')
+                                    ->paginate(5);
         // Chart.js 用のデータを整形
         $chartData = $posts->map(function ($post) {
             return [
