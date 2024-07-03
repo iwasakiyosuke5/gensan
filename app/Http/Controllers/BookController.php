@@ -20,18 +20,41 @@ class BookController extends Controller
 
 
 
+    // 提案書を作成して上位５ファイルを取得する
+    public function index()
+    {
+        $posts = kaizenProposal::orderBy('idKP', 'desc')->take(5)->get();
+        // miniMypage用
+        $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
+        // approvalPage用
+        $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
+        // Chart.js 用のデータを整形
+        $chartData = $posts->map(function ($post) {
+            return [
+                'id' => $post->idKP,
+                'name' => $post->name,
+                'title' => $post->title, // titleフィールドが存在する場合
+                'date' => $post->created_at->format('Y-m-d'), // created_atフィールドが存在する場合
+            ];
+        });
+
+        return view('books', compact('posts','mines','approvals'))->with('chartData', $chartData);
+      //         return view('books',compact('mines','approvals'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */
-    // miniMypageとapprovalPage用
-    public function index()
-    {
-        // miniMypage用
-        $posts = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
-        // approvalPage用
-        $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
-        return view('books',compact('posts','approvals'));
-    }
+//     // miniMypageとapprovalPage用
+//     public function index()
+//     {
+//         // miniMypage用
+//         $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
+//         // approvalPage用
+//         $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
+//         return view('books',compact('mines','approvals'));
+//     }
     /**
      * Store a newly created resource in storage.
      */
