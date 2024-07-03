@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
 use App\Models\kaizenProposal;
 use App\Models\User;
+// 下記は何ヶ月以内などの時に使用
+use Carbon\Carbon;
+
 
 
 class BookController extends Controller
@@ -29,7 +32,14 @@ class BookController extends Controller
         // miniMypage用
         $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
         // approvalPage用
-        $approvals = kaizenProposal::where(function ($query) {$query->where('approvalStage','検討中')->orWhere('approvalStage', '再提出');})->orderBy('idKP', 'desc')->paginate(5);
+        $currentUserDepartment = Auth::user()->department;
+        $approvals = kaizenProposal::where('department', $currentUserDepartment)
+                                    ->where(function ($query) {
+                                        $query->where('approvalStage', '検討中')
+                                              ->orWhere('approvalStage', '再提出');
+                                    })
+                                    ->orderBy('idKP', 'desc')
+                                    ->paginate(5);
         // Chart.js 用のデータを整形
         $chartData = $posts->map(function ($post) {
             return [
@@ -39,6 +49,13 @@ class BookController extends Controller
                 'date' => $post->created_at->format('Y-m-d'), // created_atフィールドが存在する場合
             ];
         });
+        //下記で今から３ヶ月前(sub)の日時を$threeMonthsAgoに与えている
+        // 一週間後(add)の時は、$nextWeek = Carbon::now()->addWeek(); 
+        $threeMonthsAgo = Carbon::now()->subMonths(3);
+        $goodCounts = kaizenProposal::where('updated_at', '>=', $threeMonthsAgo)
+                                    ->orderBy('goodCounts', 'desc')
+                                    ->take(5)->get();
+    
 
         // 個別提案書グラフ用のデータ取得
         $array =[];
@@ -65,8 +82,8 @@ class BookController extends Controller
         }else {
             $mvp=array_slice($array,4,5);
         }
-
-        return view('books', compact('posts','mines','approvals','mvp'))->with('chartData', $chartData);
+        return view('books', compact('posts','mines','approvals','goodCounts','mvp'))->with('chartData', $chartData);
+      //         return view('books',compact('mines','approvals'));
     }
 
     /**
