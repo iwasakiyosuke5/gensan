@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //この2行を追加！
 use Illuminate\Support\Facades\Auth;      //この2行を追加！
 use App\Models\kaizenProposal;
+use App\Models\User;
+
 
 class BookController extends Controller
 {
@@ -38,9 +40,33 @@ class BookController extends Controller
             ];
         });
 
-        return view('books', compact('posts','mines','approvals'))->with('chartData', $chartData);
-      //         return view('books',compact('mines','approvals'));
+        // 個別提案書グラフ用のデータ取得
+        $array =[];
+        $UserAll= User::pluck('id'); 
+        foreach ($UserAll as $value){
+             $postCount = KaizenProposal::where('user_id', $value)->count();
+             $userdata = User::where('id', $value)->first();
+             $userdata['postCount']=$postCount;
+             array_push($array,$userdata);
+        }
+        usort($array, function ($a, $b) {
+            return $b['postCount'] <=> $a['postCount'];
+        });
 
+        if(count($array)<5){
+            $mvp=$array;
+            while(count($mvp)<5){
+                $addData=['name'=>"",'postCount'=>0];
+                 array_push($mvp,$addData);
+            }
+
+        }elseif(count($array)==5){
+            $mvp=$array;
+        }else {
+            $mvp=array_slice($array,4,5);
+        }
+
+        return view('books', compact('posts','mines','approvals','mvp'))->with('chartData', $chartData);
     }
 
     /**
