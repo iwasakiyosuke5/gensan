@@ -1,12 +1,6 @@
 <!-- resources/views/list.blade.php -->
 
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Kaizen Proposals') }}
-        </h2>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </x-slot>
     <x-content-frame>
     <div>
         <div class="text-xl">投稿一覧</div>

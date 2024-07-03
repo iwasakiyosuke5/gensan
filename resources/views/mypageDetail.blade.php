@@ -1,9 +1,6 @@
 <!-- resources/views/mypageDetail.blade.php -->
 
 <x-app-layout>
-<script>
-    
-</script>
     <x-content-frame>
         <div>
             <div class="flex justify-between">
@@ -105,4 +102,5 @@
             <button id="update" class="btn-primary" {{ $readonly ? 'disabled' : '' }}>Update!</button>
         </div>
     </x-content-frame>
+    @vite(['resources/js/detailpage.js'])
 </x-app-layout>
