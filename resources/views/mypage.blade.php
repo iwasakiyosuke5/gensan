@@ -1,7 +1,7 @@
 <x-app-layout>
 <x-content-frame>
     <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-        <h1 style="text-align: left; margin-bottom: 20px;">自分の投稿一覧</h1>
+        <h1 class="text-xl" style="text-align: left; margin-bottom: 20px;">{{Auth::user()->name}}さんの投稿一覧</h1>
         <div style="overflow-x: auto;">
             <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
                 <thead>

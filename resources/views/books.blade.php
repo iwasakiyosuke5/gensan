@@ -24,8 +24,8 @@
         @if ($position === '一般社員' || $position === '係長')
         <!-- usersテーブルのpositionが係長と一般社員の時の表示-->
         <div class="flex flex-col rounded-lg border p-4 md:p-6 bg-white text-gray-900 w-full">
-          <h3 class="mb-2 text-lg font-semibold md:text-xl">自分の投稿一覧</h3>
-          <p class="mb-4 text-gray-500">あなたの投稿した提案書一覧が確認できます</p>
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">{{Auth::user()->name}}さんの投稿一覧</h3>
+          <p class="mb-4 text-gray-500"></p>
           @if($mines->count())
           <table> <!-- ここでテーブルを追加 -->
             <thead>
