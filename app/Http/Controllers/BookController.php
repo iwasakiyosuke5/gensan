@@ -60,8 +60,11 @@ class BookController extends Controller
         // 個別提案書グラフ用のデータ取得
         $array =[];
         $UserAll= User::pluck('id'); 
+       
+        $startOfmonth = Carbon::now()->startOfmonth();
+        $endOfmonth = Carbon::now()->endOfmonth();
         foreach ($UserAll as $value){
-             $postCount = KaizenProposal::where('user_id', $value)->count();
+             $postCount = KaizenProposal::whereBetween('updated_at', [$startOfmonth, $endOfmonth])->where('user_id', $value)->count();
              $userdata = User::where('id', $value)->first();
              $userdata['postCount']=$postCount;
              array_push($array,$userdata);
@@ -87,9 +90,10 @@ class BookController extends Controller
         $departments = ['生産技術部', '研究開発部', '経理部', '営業部'];
         $dpt = [];
 
-
+        $startOfYear = Carbon::now()->startOfYear();
+        $endOfYear = Carbon::now()->endOfYear();
         foreach ($departments as $department) {
-            $count = KaizenProposal::where('department', $department)->count();
+            $count = KaizenProposal::whereBetween('updated_at', [$startOfYear, $endOfYear])->where('department', $department)->count();
             $dpt[] = [
                 'name' => $department,
                 'proposalCount' => $count
