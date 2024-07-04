@@ -138,7 +138,7 @@
 
         <!-- 個人別提案数一覧 -->
         <x-content-frame>
-          <h3 class="mb-2 text-lg font-semibold md:text-xl">個人別提案数Top5</h3>
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">{{ \Carbon\Carbon::now()->format('Y年m月') }}個人別提案数Top5</h3>
           <p class="mb-4 text-gray-500">あなたのアイデアが会社を変えます！！</p>
           <div class='w-full'>
             <canvas id="mvp_chart" class="w-screen"></canvas>
@@ -147,7 +147,7 @@
 
         <!-- 部署別提案数一覧 -->
         <x-content-frame>
-          <h3 class="mb-2 text-lg font-semibold md:text-xl">部署別提案数一覧</h3>
+          <h3 class="mb-2 text-lg font-semibold md:text-xl">{{ \Carbon\Carbon::now()->format('Y年') }}部署別提案数</h3>
           <p class="mb-4 text-gray-500">チームそれぞれ個性豊なアイデア、読むのが楽しい！</p>
           <div class='w-full'>
             <canvas id="department_chart" class="w-screen"></canvas>
