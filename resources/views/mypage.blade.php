@@ -30,7 +30,7 @@
                 </tbody>
             </table>
             <div class="flex justify-center">
-                {{ $posts->links()}}
+                {{ $posts->links()}} 
             </div>
         </div>
     </div>

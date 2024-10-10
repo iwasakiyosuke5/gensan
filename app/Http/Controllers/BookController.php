@@ -28,6 +28,7 @@ class BookController extends Controller
     // 提案書を作成して上位５ファイルを取得する
     public function index()
     {
+        // 最新投稿Top5用
         $posts = kaizenProposal::orderBy('idKP', 'desc')->take(5)->get();
         // miniMypage用
         $mines = kaizenProposal::where('user_id', Auth::id())->orderBy('idKP', 'desc')->limit(5)->get();
@@ -60,7 +61,7 @@ class BookController extends Controller
         // 個別提案書グラフ用のデータ取得
         $array =[];
         $UserAll= User::pluck('id'); 
-       
+
         $startOfmonth = Carbon::now()->startOfmonth();
         $endOfmonth = Carbon::now()->endOfmonth();
         foreach ($UserAll as $value){
